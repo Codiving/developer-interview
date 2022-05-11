@@ -1,17 +1,22 @@
 import styled from "@emotion/styled";
+import { Typography } from "../../components";
 
 const FooterContainer = styled("footer", {
   label: "FooterContainer"
 })(() => {
   return {
-    position: "absolute",
-    bottom: 0,
-    width: "100%"
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   };
 });
 
 const Footer = () => {
-  return <FooterContainer>Footer</FooterContainer>;
+  return (
+    <FooterContainer>
+      <Typography component="p">&copy; Made by Codiving</Typography>
+    </FooterContainer>
+  );
 };
 
 export default Footer;
