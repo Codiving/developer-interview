@@ -5,6 +5,7 @@ interface Props {
   children: React.ReactNode;
   fontWeight?: number;
   fontSize?: number;
+  className?: string;
 }
 
 const TypographyContainer = styled("span", {
@@ -21,13 +22,16 @@ const Typography = (props: Props) => {
     component = "span",
     children,
     fontWeight = 400,
-    fontSize = 16
+    fontSize = 16,
+    className
   } = props;
+
   return (
     <TypographyContainer
       as={component}
       fontWeight={fontWeight}
       fontSize={fontSize}
+      className={className}
     >
       {children}
     </TypographyContainer>
