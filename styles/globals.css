@@ -128,3 +128,7 @@ table {
   display: grid;
   grid-template-rows: 64px 1fr 30px;
 }
+
+* {
+  box-sizing: border-box;
+}
