@@ -19,7 +19,8 @@ const ChipContainer = styled("div", {
     width: "fit-content",
     borderRadius: 24,
     color: Boolean(color) ? color : "black",
-    background: Boolean(bgColor) ? bgColor : "rgba(0, 0, 0, 0.08)"
+    background: Boolean(bgColor) ? bgColor : "rgba(0, 0, 0, 0.08)",
+    cursor: "pointer"
   };
 });
 
