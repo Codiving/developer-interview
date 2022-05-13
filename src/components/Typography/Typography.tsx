@@ -6,16 +6,20 @@ interface Props {
   fontWeight?: number;
   fontSize?: number;
   className?: string;
+  lineHeight?: string;
 }
 
 const TypographyContainer = styled("span", {
   label: "TypographyContainer"
-})<{ fontWeight: number; fontSize: number }>(({ fontWeight, fontSize }) => {
-  return {
-    fontWeight: fontWeight,
-    fontSize: fontSize
-  };
-});
+})<{ fontWeight: number; fontSize: number; lineHeight: string }>(
+  ({ fontWeight, fontSize, lineHeight }) => {
+    return {
+      fontWeight: fontWeight,
+      fontSize: fontSize,
+      lineHeight: lineHeight
+    };
+  }
+);
 
 const Typography = (props: Props) => {
   const {
@@ -23,6 +27,7 @@ const Typography = (props: Props) => {
     children,
     fontWeight = 400,
     fontSize = 16,
+    lineHeight = "inherit",
     className
   } = props;
 
@@ -31,6 +36,7 @@ const Typography = (props: Props) => {
       as={component}
       fontWeight={fontWeight}
       fontSize={fontSize}
+      lineHeight={lineHeight}
       className={className}
     >
       {children}
