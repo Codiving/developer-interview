@@ -15,7 +15,7 @@ const ChipContainer = styled("div", {
     display: "flex",
     alignItems: "center",
     gap: "0.2em",
-    padding: "0.3em",
+    padding: "0.5em",
     width: "fit-content",
     borderRadius: 24,
     color: Boolean(color) ? color : "black",
@@ -23,10 +23,15 @@ const ChipContainer = styled("div", {
   };
 });
 
+// outline: 1px solid rgb(189, 189, 189);
+// backgroundColor: transparent
+
 const IconWrapper = styled("div", {
   label: "IconWrapper"
 })(() => {
-  return {};
+  return {
+    display: "flex"
+  };
 });
 
 const Chip = (props: ChipProps) => {
