@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { Typography } from "..";
 import { prefix } from "../../common";
+import Typography from "../Typography";
 
 interface QuizProps {
   type: string;
