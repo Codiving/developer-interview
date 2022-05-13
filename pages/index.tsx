@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { data } from "../public/data";
 import { maxWidth } from "../src/common";
 import { Typography } from "../src/components";
+import Category from "../src/components/Category";
 import Quiz from "../src/components/Quiz";
 
 const HomeContainer = styled("div", {
@@ -53,7 +54,7 @@ const QuizContents = styled("div", {
     display: "flex",
     flexDirection: "column",
     margin: "1em 0",
-    gap: "1em 0"
+    gap: "2.5em 0"
   };
 });
 
@@ -107,6 +108,7 @@ const Home: NextPage = () => {
           </div>
         </MainContents>
       </MainSection>
+      <Category />
       <QuizSection>
         <QuizContents>
           {data.map((item, index) => {
