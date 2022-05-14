@@ -65,7 +65,7 @@ const AnswerList = styled("div", {
     : {};
   return {
     padding: 5,
-    border: "1px solid",
+    border: "1px solid #dcd4d4",
     borderRadius: 8,
     backgroundColor: "white",
     cursor: "pointer",
