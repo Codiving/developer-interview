@@ -6,10 +6,13 @@ import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { data } from "../public/data";
 import { IconStyle, maxWidth, QuizCounts, QuizCountsType } from "../src/common";
-import { Typography } from "../src/components";
-import Category from "../src/components/Category";
-import Quiz from "../src/components/Quiz";
-import QuizGenerator from "../src/components/QuizGenerator";
+import {
+  Category,
+  MainDescription,
+  Quiz,
+  QuizGenerator,
+  Typography
+} from "../src/components";
 
 export interface ICategory {
   text: string;
@@ -44,29 +47,6 @@ const HomeContainer = styled("div", {
   label: "HomeContainer"
 })(() => {
   return {};
-});
-
-const MainSection = styled("section", {
-  label: "MainSection"
-})(() => {
-  return {
-    backgroundColor: "#e0e0ee",
-    padding: "3em"
-  };
-});
-
-const MainContents = styled("div", {
-  label: "MainContents"
-})(() => {
-  return {
-    maxWidth: maxWidth,
-    width: "100%",
-    margin: "0 auto",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "1.2em"
-  };
 });
 
 const QuizSection = styled("section", {
@@ -143,23 +123,7 @@ const Home: NextPage = () => {
 
   return (
     <HomeContainer>
-      <MainSection>
-        <MainContents>
-          <div>
-            <Typography fontWeight={600} fontSize={24}>
-              프론트엔드 개발자 면접 준비
-            </Typography>
-            <Typography> 를 하고 계신가요?</Typography>
-          </div>
-          <div>
-            <Typography>간단한 </Typography>
-            <Typography fontWeight={600} fontSize={24}>
-              객관식 면접
-            </Typography>
-            <Typography> 을 통해 나의 부족함을 확인해봅시다.</Typography>
-          </div>
-        </MainContents>
-      </MainSection>
+      <MainDescription />
       <Category
         categories={categories}
         onHandleCategories={onHandleCategories}
