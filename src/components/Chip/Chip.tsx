@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 
 interface ChipProps {
   className?: string;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
-  children: React.ReactElement | string;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
+  children: React.ReactNode;
   bgColor?: string;
   color?: string;
   onClick: () => void;
