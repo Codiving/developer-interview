@@ -78,9 +78,8 @@ const ChipCategory = styled(Chip, {
     .split(",");
 
   return {
-    backgroundColor: selected
-      ? `rgba(${r},${g},${b}, ${0.3}) !important`
-      : "transparent"
+    border: `1px solid rgba(${r},${g},${b}, ${0.3})`,
+    backgroundColor: selected ? `rgba(${r},${g},${b}, ${0.3})` : "transparent"
   };
 });
 
