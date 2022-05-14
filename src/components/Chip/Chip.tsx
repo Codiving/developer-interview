@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 
 interface ChipProps {
+  className?: string;
   startIcon?: React.ReactElement;
   endIcon?: React.ReactElement;
   children: React.ReactElement | string;
   bgColor?: string;
   color?: string;
+  onClick: () => void;
 }
 
 const ChipContainer = styled("div", {
@@ -19,7 +21,8 @@ const ChipContainer = styled("div", {
     width: "fit-content",
     borderRadius: 24,
     color: Boolean(color) ? color : "black",
-    background: Boolean(bgColor) ? bgColor : "rgba(0, 0, 0, 0.08)",
+    background: Boolean(bgColor) ? bgColor : "transparent",
+    border: "1px solid rgba(0, 0, 0, 0.08)",
     cursor: "pointer"
   };
 });
@@ -36,9 +39,22 @@ const IconWrapper = styled("div", {
 });
 
 const Chip = (props: ChipProps) => {
-  const { startIcon, endIcon, children, bgColor = "", color = "" } = props;
+  const {
+    className,
+    startIcon,
+    endIcon,
+    children,
+    bgColor = "",
+    color = "",
+    onClick
+  } = props;
   return (
-    <ChipContainer bgColor={bgColor} color={color}>
+    <ChipContainer
+      className={className}
+      bgColor={bgColor}
+      color={color}
+      onClick={onClick}
+    >
       {startIcon && <IconWrapper>{startIcon}</IconWrapper>}
       {children}
       {endIcon && <IconWrapper>{endIcon}</IconWrapper>}

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { useCallback, useState } from "react";
 import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
@@ -8,8 +9,10 @@ import Typography from "../Typography";
 
 interface Category {
   text: string;
+  color: string;
   startIcon?: React.ReactElement;
   endIcon?: React.ReactElement;
+  selected: boolean;
 }
 
 interface CategoryProps {}
@@ -19,22 +22,31 @@ const IconStyle = {
   height: 24
 };
 
-const categories: Category[] = [
+const Categories: Category[] = [
   {
     text: "Web",
-    startIcon: <GoBrowser style={IconStyle} />
-    // #03a9f4
+    startIcon: (
+      <GoBrowser style={{ ...IconStyle, color: "rgba(75, 75, 205, 1)" }} />
+    ),
+    color: "rgba(75, 75, 205, 1)",
+    selected: false
   },
   {
     text: "JavaScript",
-    startIcon: <DiJavascript style={IconStyle} />
-    // #ff9800
+    startIcon: (
+      <DiJavascript style={{ ...IconStyle, color: "rgba(255, 152, 0, 1)" }} />
+    ),
+    color: "rgba(255, 152, 0, 1)",
+    selected: false
   },
   {
     text: "React",
-    startIcon: <FaReact style={IconStyle} />
+    startIcon: (
+      <FaReact style={{ ...IconStyle, color: "rgba(3, 169, 244, 1)" }} />
+    ),
+    color: "rgba(3, 169, 244, 1)",
+    selected: false
   }
-  // #4b4bcd
 ];
 
 const CategoryContainer = styled("section", {
@@ -56,17 +68,69 @@ const CategoryContents = styled("div", {
   };
 });
 
+const ChipCategory = styled(Chip, {
+  label: "ChipCategory"
+})<{ selected: boolean; color: string }>(({ selected, color: _color }) => {
+  const [r, g, b] = _color
+    .replace("rgba", "")
+    .replace("(", "")
+    .replace(")", "")
+    .split(",");
+
+  return {
+    backgroundColor: selected
+      ? `rgba(${r},${g},${b}, ${0.3}) !important`
+      : "transparent"
+  };
+});
+
+const ChipTypography = styled(Typography, {
+  label: "ChipTypography"
+})<{ color?: string }>(({ color }) => {
+  return {
+    color: color ? color : ""
+  };
+});
+
 const Category = (props: CategoryProps) => {
+  const [categories, setCategories] = useState<Category[]>(Categories);
+
+  const onSelected = useCallback(
+    (index: number, selected: boolean) => () => {
+      const newCategories = categories.map((item, idx) => {
+        if (idx !== index) return item;
+        return {
+          ...item,
+          selected: !selected
+        };
+      });
+
+      setCategories(newCategories);
+    },
+    [categories]
+  );
+
   return (
     <CategoryContainer>
       <CategoryContents>
-        {categories.map(({ startIcon, endIcon, text }) => {
-          return (
-            <Chip key={text} startIcon={startIcon} endIcon={endIcon}>
-              <Typography lineHeight={"initial"}>{text}</Typography>
-            </Chip>
-          );
-        })}
+        {categories.map(
+          ({ startIcon, endIcon, text, color, selected }, index) => {
+            return (
+              <ChipCategory
+                onClick={onSelected(index, selected)}
+                key={text}
+                startIcon={startIcon}
+                endIcon={endIcon}
+                selected={selected}
+                color={color}
+              >
+                <ChipTypography lineHeight={"initial"} color={color}>
+                  {text}
+                </ChipTypography>
+              </ChipCategory>
+            );
+          }
+        )}
       </CategoryContents>
     </CategoryContainer>
   );
