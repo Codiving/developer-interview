@@ -34,5 +34,15 @@ export const IconStyle = {
   height: 24
 };
 
+export interface Data {
+  type: string;
+  question: string[];
+  candidates: string[];
+  answer: string;
+  keywords: string[];
+  messages: string[];
+  link: string[];
+}
+
 export const QuizCounts = [20, 25, 30, 35, 40] as const;
 export type QuizCountsType = typeof QuizCounts[number];

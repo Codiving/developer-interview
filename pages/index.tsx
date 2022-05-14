@@ -5,14 +5,14 @@ import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { data } from "../public/data";
-import { IconStyle, maxWidth, QuizCounts, QuizCountsType } from "../src/common";
+import { IconStyle, QuizCounts, QuizCountsType } from "../src/common";
 import {
   Category,
   MainDescription,
-  Quiz,
   QuizGenerator,
   Typography
 } from "../src/components";
+import QuizList from "../src/components/QuizList";
 
 export interface ICategory {
   text: string;
@@ -47,29 +47,6 @@ const HomeContainer = styled("div", {
   label: "HomeContainer"
 })(() => {
   return {};
-});
-
-const QuizSection = styled("section", {
-  label: "QuizSection"
-})(() => {
-  return {
-    display: "flex",
-    justifyContent: "center"
-  };
-});
-
-const QuizContents = styled("div", {
-  label: "QuizContents"
-})(() => {
-  return {
-    maxWidth: maxWidth,
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    margin: "1em 0",
-    gap: "2.5em 0"
-  };
 });
 
 const Home: NextPage = () => {
@@ -133,30 +110,13 @@ const Home: NextPage = () => {
         onHandleQuizCount={onHandleQuizCount}
         onQuizGenerator={onQuizGenerator}
       />
-      <QuizSection>
-        <QuizContents>
-          {contents.map((item, index) => {
-            const { type, question, candidates, answer, keywords, messages } =
-              item;
+      <QuizList
+        contents={contents}
+        isSubmit={isSubmit}
+        answers={answers}
+        onChangeAnswer={onChangeAnswer}
+      />
 
-            return (
-              <Quiz
-                key={index}
-                type={type}
-                question={question}
-                candidates={candidates}
-                answer={answer}
-                keywords={keywords}
-                messages={messages}
-                index={index}
-                userAnswer={answers[index]}
-                onChangeAnswer={onChangeAnswer}
-                isSubmit={isSubmit}
-              />
-            );
-          })}
-        </QuizContents>
-      </QuizSection>
       <div>
         <button onClick={onSubmit}>Submit</button>
       </div>
