@@ -6,6 +6,7 @@ import { maxWidth } from "../src/common";
 import { Typography } from "../src/components";
 import Category from "../src/components/Category";
 import Quiz from "../src/components/Quiz";
+import QuizGenerator from "../src/components/QuizGenerator";
 
 const HomeContainer = styled("div", {
   label: "HomeContainer"
@@ -110,6 +111,7 @@ const Home: NextPage = () => {
         </MainContents>
       </MainSection>
       <Category />
+      <QuizGenerator />
       <QuizSection>
         <QuizContents>
           {data.map((item, index) => {
