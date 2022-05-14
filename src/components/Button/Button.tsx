@@ -8,6 +8,7 @@ interface ButtonProps {
   color?: string;
   fontSize?: number;
   selected?: boolean;
+  onClick?: () => void;
 }
 
 const ButtonContainer = styled("button", {
@@ -46,7 +47,8 @@ const Button = (props: ButtonProps) => {
     className,
     color = "#2196f3",
     fontSize = 0,
-    selected = false
+    selected = false,
+    onClick
   } = props;
 
   return (
@@ -55,6 +57,7 @@ const Button = (props: ButtonProps) => {
       data-type="button"
       color={color}
       selected={selected}
+      onClick={onClick}
     >
       <ButtonTypography fontSize={fontSize}>{children}</ButtonTypography>
     </ButtonContainer>

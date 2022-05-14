@@ -1,6 +1,6 @@
-const maxWidth = 1200;
+export const maxWidth = 1200;
 
-const prefix = [
+export const prefix = [
   "A",
   "B",
   "C",
@@ -29,4 +29,10 @@ const prefix = [
   "Z"
 ];
 
-export { maxWidth, prefix };
+export const IconStyle = {
+  width: 24,
+  height: 24
+};
+
+export const QuizCounts = [20, 25, 30, 35, 40] as const;
+export type QuizCountsType = typeof QuizCounts[number];

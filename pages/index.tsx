@@ -1,12 +1,44 @@
 import styled from "@emotion/styled";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
+import { DiJavascript } from "react-icons/di";
+import { FaReact } from "react-icons/fa";
+import { GoBrowser } from "react-icons/go";
 import { data } from "../public/data";
-import { maxWidth } from "../src/common";
+import { IconStyle, maxWidth, QuizCounts, QuizCountsType } from "../src/common";
 import { Typography } from "../src/components";
 import Category from "../src/components/Category";
 import Quiz from "../src/components/Quiz";
 import QuizGenerator from "../src/components/QuizGenerator";
+
+export interface ICategory {
+  text: string;
+  color: string;
+  startIcon?: React.ReactElement;
+  endIcon?: React.ReactElement;
+  selected: boolean;
+}
+
+export const Categories: ICategory[] = [
+  {
+    text: "Web",
+    startIcon: <GoBrowser style={{ ...IconStyle, color: "#4b4bcd" }} />,
+    color: "#4b4bcd",
+    selected: false
+  },
+  {
+    text: "JavaScript",
+    startIcon: <DiJavascript style={{ ...IconStyle, color: "#ff9800" }} />,
+    color: "#ff9800",
+    selected: false
+  },
+  {
+    text: "React",
+    startIcon: <FaReact style={{ ...IconStyle, color: "#03a9f4" }} />,
+    color: "#03a9f4",
+    selected: false
+  }
+];
 
 const HomeContainer = styled("div", {
   label: "HomeContainer"
@@ -61,8 +93,15 @@ const QuizContents = styled("div", {
 });
 
 const Home: NextPage = () => {
+  const [contents, setContents] = useState(data.slice(0, 5));
+  const [categories, setCategories] = useState<ICategory[]>(Categories);
   const [answers, setAnswers] = useState<number[]>([]);
   const [isSubmit, setIsSubmit] = useState(false);
+  const [quizCount, setQuizCount] = useState<QuizCountsType>(QuizCounts[0]);
+
+  const onHandleCategories = useCallback((newCategories: ICategory[]) => {
+    setCategories(newCategories);
+  }, []);
 
   const onChangeAnswer = useCallback(
     (index: number, _answer: number) => {
@@ -87,9 +126,20 @@ const Home: NextPage = () => {
     setIsSubmit(true);
   };
 
+  const onHandleQuizCount = useCallback(
+    (count: QuizCountsType) => setQuizCount(count),
+    []
+  );
+
+  const onQuizGenerator = () => {
+    const selectedCategories = categories.filter(({ selected }) => selected);
+    console.log("selectedCategories", selectedCategories);
+    console.log("quizCount", quizCount);
+  };
+
   useEffect(() => {
-    setAnswers(new Array(data.length).fill(-1));
-  }, []);
+    setAnswers(new Array(contents.length).fill(-1));
+  }, [contents]);
 
   return (
     <HomeContainer>
@@ -110,11 +160,18 @@ const Home: NextPage = () => {
           </div>
         </MainContents>
       </MainSection>
-      <Category />
-      <QuizGenerator />
+      <Category
+        categories={categories}
+        onHandleCategories={onHandleCategories}
+      />
+      <QuizGenerator
+        quizCount={quizCount}
+        onHandleQuizCount={onHandleQuizCount}
+        onQuizGenerator={onQuizGenerator}
+      />
       <QuizSection>
         <QuizContents>
-          {data.map((item, index) => {
+          {contents.map((item, index) => {
             const { type, question, candidates, answer, keywords, messages } =
               item;
 

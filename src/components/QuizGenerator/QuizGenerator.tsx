@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
-import { maxWidth } from "../../common";
+import { maxWidth, QuizCounts, QuizCountsType } from "../../common";
 import Button from "../Button";
 import ButtonGroup from "../ButtonGroup";
 
-const QuizCounts = [20, 25, 30, 35, 40];
-
-interface QuizGeneratorProps {}
+interface QuizGeneratorProps {
+  quizCount: QuizCountsType;
+  onHandleQuizCount: (item: QuizCountsType) => void;
+  onQuizGenerator: () => void;
+}
 
 const QuizGeneratorContainer = styled("section", {
   label: "QuizGeneratorContainer"
@@ -42,16 +44,28 @@ const QuizGeneratorButtonGroup = styled(ButtonGroup, {
 });
 
 const QuizGenerator = (props: QuizGeneratorProps) => {
+  const { quizCount, onHandleQuizCount, onQuizGenerator } = props;
+
   return (
     <QuizGeneratorContainer>
       <QuizGeneratorContents>
         <QuizGeneratorButtonConatiner>
           <QuizGeneratorButtonGroup>
             {QuizCounts.map(count => (
-              <Button key={count}>{count}</Button>
+              <Button
+                key={count}
+                selected={count === quizCount}
+                onClick={() => {
+                  onHandleQuizCount(count);
+                }}
+              >
+                {count}
+              </Button>
             ))}
           </QuizGeneratorButtonGroup>
-          <Button color="#000000">문제 생성</Button>
+          <Button color="#000000" onClick={onQuizGenerator}>
+            문제 생성
+          </Button>
         </QuizGeneratorButtonConatiner>
       </QuizGeneratorContents>
     </QuizGeneratorContainer>

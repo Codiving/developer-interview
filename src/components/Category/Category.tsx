@@ -1,48 +1,15 @@
 import styled from "@emotion/styled";
-import { useCallback, useState } from "react";
-import { DiJavascript } from "react-icons/di";
-import { FaReact } from "react-icons/fa";
-import { GoBrowser } from "react-icons/go";
+import { useCallback } from "react";
+import { ICategory } from "../../../pages";
 import { maxWidth } from "../../common";
 import { hexToRgbWithA } from "../../utils";
 import Chip from "../Chip";
 import Typography from "../Typography";
 
-interface Category {
-  text: string;
-  color: string;
-  startIcon?: React.ReactElement;
-  endIcon?: React.ReactElement;
-  selected: boolean;
+interface CategoryProps {
+  categories: ICategory[];
+  onHandleCategories: (item: ICategory[]) => void;
 }
-
-interface CategoryProps {}
-
-const IconStyle = {
-  width: 24,
-  height: 24
-};
-
-const Categories: Category[] = [
-  {
-    text: "Web",
-    startIcon: <GoBrowser style={{ ...IconStyle, color: "#4b4bcd" }} />,
-    color: "#4b4bcd",
-    selected: false
-  },
-  {
-    text: "JavaScript",
-    startIcon: <DiJavascript style={{ ...IconStyle, color: "#ff9800" }} />,
-    color: "#ff9800",
-    selected: false
-  },
-  {
-    text: "React",
-    startIcon: <FaReact style={{ ...IconStyle, color: "#03a9f4" }} />,
-    color: "#03a9f4",
-    selected: false
-  }
-];
 
 const CategoryContainer = styled("section", {
   label: "CategoryContainer"
@@ -87,7 +54,7 @@ const ChipTypography = styled(Typography, {
 });
 
 const Category = (props: CategoryProps) => {
-  const [categories, setCategories] = useState<Category[]>(Categories);
+  const { categories, onHandleCategories } = props;
 
   const onSelected = useCallback(
     (index: number, selected: boolean) => () => {
@@ -99,9 +66,9 @@ const Category = (props: CategoryProps) => {
         };
       });
 
-      setCategories(newCategories);
+      onHandleCategories(newCategories);
     },
-    [categories]
+    [categories, onHandleCategories]
   );
 
   return (
