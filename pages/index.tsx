@@ -53,6 +53,7 @@ const QuizContents = styled("div", {
     width: "100%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     margin: "1em 0",
     gap: "2.5em 0"
   };

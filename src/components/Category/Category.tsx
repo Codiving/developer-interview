@@ -52,7 +52,7 @@ const Categories: Category[] = [
 const CategoryContainer = styled("section", {
   label: "CategoryContainer"
 })(() => {
-  return {};
+  return { position: "relative", padding: "2em" };
 });
 
 const CategoryContents = styled("div", {
@@ -61,10 +61,10 @@ const CategoryContents = styled("div", {
   return {
     maxWidth: maxWidth,
     width: "100%",
-    margin: "2em auto",
     display: "flex",
     justifyContent: "center",
-    gap: "1em"
+    gap: "1em",
+    margin: "0 auto"
   };
 });
 
