@@ -60,7 +60,8 @@ const AnswerList = styled("div", {
   const selected = _selected
     ? {
         outline: "2px solid",
-        backgroundColor: "#b0b0f0"
+        backgroundColor: "#b0b0f0",
+        border: 0
       }
     : {};
   return {

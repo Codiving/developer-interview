@@ -4,6 +4,7 @@ import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { maxWidth } from "../../common";
+import { hexToRgbWithA } from "../../utils";
 import Chip from "../Chip";
 import Typography from "../Typography";
 
@@ -25,26 +26,20 @@ const IconStyle = {
 const Categories: Category[] = [
   {
     text: "Web",
-    startIcon: (
-      <GoBrowser style={{ ...IconStyle, color: "rgba(75, 75, 205, 1)" }} />
-    ),
-    color: "rgba(75, 75, 205, 1)",
+    startIcon: <GoBrowser style={{ ...IconStyle, color: "#4b4bcd" }} />,
+    color: "#4b4bcd",
     selected: false
   },
   {
     text: "JavaScript",
-    startIcon: (
-      <DiJavascript style={{ ...IconStyle, color: "rgba(255, 152, 0, 1)" }} />
-    ),
-    color: "rgba(255, 152, 0, 1)",
+    startIcon: <DiJavascript style={{ ...IconStyle, color: "#ff9800" }} />,
+    color: "#ff9800",
     selected: false
   },
   {
     text: "React",
-    startIcon: (
-      <FaReact style={{ ...IconStyle, color: "rgba(3, 169, 244, 1)" }} />
-    ),
-    color: "rgba(3, 169, 244, 1)",
+    startIcon: <FaReact style={{ ...IconStyle, color: "#03a9f4" }} />,
+    color: "#03a9f4",
     selected: false
   }
 ];
@@ -71,15 +66,15 @@ const CategoryContents = styled("div", {
 const ChipCategory = styled(Chip, {
   label: "ChipCategory"
 })<{ selected: boolean; color: string }>(({ selected, color: _color }) => {
-  const [r, g, b] = _color
-    .replace("rgba", "")
-    .replace("(", "")
-    .replace(")", "")
-    .split(",");
-
+  const color = hexToRgbWithA(_color, 0.3);
+  const backgroundColor = hexToRgbWithA(_color, 0.5);
   return {
-    border: `1px solid rgba(${r},${g},${b}, ${0.3})`,
-    backgroundColor: selected ? `rgba(${r},${g},${b}, ${0.3})` : "transparent"
+    border: `1px solid ${color}`,
+    backgroundColor: selected ? color : "transparent",
+
+    "&:hover": {
+      backgroundColor: backgroundColor
+    }
   };
 });
 
