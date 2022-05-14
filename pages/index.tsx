@@ -5,7 +5,12 @@ import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { data } from "../public/data";
-import { IconStyle, QuizCounts, QuizCountsType } from "../src/common";
+import {
+  getCategoryDataCount,
+  IconStyle,
+  QuizCounts,
+  QuizCountsType
+} from "../src/common";
 import {
   Category,
   MainDescription,
@@ -13,33 +18,38 @@ import {
   Typography
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
-
 export interface ICategory {
   text: string;
   color: string;
   startIcon?: React.ReactElement;
   endIcon?: React.ReactElement;
   selected: boolean;
+  count: number;
 }
+
+const { Web, JavaScript, React } = getCategoryDataCount();
 
 export const Categories: ICategory[] = [
   {
     text: "Web",
     startIcon: <GoBrowser style={{ ...IconStyle, color: "#4b4bcd" }} />,
     color: "#4b4bcd",
-    selected: false
+    selected: false,
+    count: Web
   },
   {
     text: "JavaScript",
     startIcon: <DiJavascript style={{ ...IconStyle, color: "#ff9800" }} />,
     color: "#ff9800",
-    selected: false
+    selected: false,
+    count: JavaScript
   },
   {
     text: "React",
     startIcon: <FaReact style={{ ...IconStyle, color: "#03a9f4" }} />,
     color: "#03a9f4",
-    selected: false
+    selected: false,
+    count: React
   }
 ];
 
@@ -89,7 +99,15 @@ const Home: NextPage = () => {
   );
 
   const onQuizGenerator = () => {
-    const selectedCategories = categories.filter(({ selected }) => selected);
+    const selectedCategories = categories.reduce<
+      {
+        text: string;
+        count: number;
+      }[]
+    >((acc, cur) => {
+      if (cur.selected) return [...acc, { text: cur.text, count: cur.count }];
+      return acc;
+    }, []);
     console.log("selectedCategories", selectedCategories);
     console.log("quizCount", quizCount);
   };

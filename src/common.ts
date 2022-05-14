@@ -1,3 +1,5 @@
+import { data } from "../public/data";
+
 export const maxWidth = 1200;
 
 export const prefix = [
@@ -46,3 +48,22 @@ export interface Data {
 
 export const QuizCounts = [20, 25, 30, 35, 40] as const;
 export type QuizCountsType = typeof QuizCounts[number];
+
+export const getCategoryDataCount = (): {
+  Web: number;
+  JavaScript: number;
+  React: number;
+} => {
+  const type = data.map(el => el.type);
+
+  const result = type.reduce<any>((acc, cur) => {
+    acc[cur] = 0;
+    return acc;
+  }, {});
+
+  data.forEach(({ type }) => {
+    result[type] += 1;
+  });
+
+  return result;
+};
