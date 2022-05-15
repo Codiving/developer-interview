@@ -22,6 +22,25 @@ const CategoryContents = styled("div", {
 })(() => {
   return {
     maxWidth: maxWidth,
+    margin: "0 auto"
+  };
+});
+
+const CategoryText = styled(Typography, {
+  label: "CategoryText"
+})(() => {
+  return {
+    marginBottom: 30,
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: 700
+  };
+});
+
+const ChipCategoryContainer = styled("div", {
+  label: "ChipCategory"
+})(() => {
+  return {
     width: "100%",
     display: "flex",
     justifyContent: "center",
@@ -74,24 +93,27 @@ const Category = (props: CategoryProps) => {
   return (
     <CategoryContainer>
       <CategoryContents>
-        {categories.map(
-          ({ startIcon, endIcon, text, color, selected }, index) => {
-            return (
-              <ChipCategory
-                onClick={onSelected(index, selected)}
-                key={text}
-                startIcon={startIcon}
-                endIcon={endIcon}
-                selected={selected}
-                color={color}
-              >
-                <ChipTypography lineHeight={"initial"} color={color}>
-                  {text}
-                </ChipTypography>
-              </ChipCategory>
-            );
-          }
-        )}
+        <CategoryText component="h3">Quiz Categories</CategoryText>
+        <ChipCategoryContainer>
+          {categories.map(
+            ({ startIcon, endIcon, text, color, selected }, index) => {
+              return (
+                <ChipCategory
+                  onClick={onSelected(index, selected)}
+                  key={text}
+                  startIcon={startIcon}
+                  endIcon={endIcon}
+                  selected={selected}
+                  color={color}
+                >
+                  <ChipTypography lineHeight={"initial"} color={color}>
+                    {text}
+                  </ChipTypography>
+                </ChipCategory>
+              );
+            }
+          )}
+        </ChipCategoryContainer>
       </CategoryContents>
     </CategoryContainer>
   );

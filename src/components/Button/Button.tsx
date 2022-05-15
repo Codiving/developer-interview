@@ -9,29 +9,32 @@ interface ButtonProps {
   fontSize?: number;
   selected?: boolean;
   onClick?: () => void;
+  borderRadius?: number;
 }
 
 const ButtonContainer = styled("button", {
   label: "ButtonContainer"
-})<{ color: string; selected: boolean }>(({ color, selected: _selected }) => {
-  const selected = _selected
-    ? { color: "white", backgroundColor: hexToRgbWithA(color, 0.5) }
-    : {};
+})<{ color: string; selected: boolean; borderRadius: number }>(
+  ({ color, selected: _selected, borderRadius }) => {
+    const selected = _selected
+      ? { color: "white", backgroundColor: hexToRgbWithA(color, 0.5) }
+      : {};
 
-  return {
-    border: `1px solid ${color}`,
-    borderRadius: 8,
-    background: "none",
-    padding: 8,
-    cursor: "pointer",
-    color: color,
-    ...selected,
-    "&:hover": {
-      backgroundColor: hexToRgbWithA(color, 0.3),
-      color: "white"
-    }
-  };
-});
+    return {
+      border: `1px solid ${color}`,
+      borderRadius: borderRadius,
+      background: "none",
+      padding: 8,
+      cursor: "pointer",
+      color: color,
+      ...selected,
+      "&:hover": {
+        backgroundColor: hexToRgbWithA(color, 0.3),
+        color: "white"
+      }
+    };
+  }
+);
 
 const ButtonTypography = styled(Typography, {
   label: "ButtonTypography"
@@ -48,7 +51,8 @@ const Button = (props: ButtonProps) => {
     color = "#2196f3",
     fontSize = 0,
     selected = false,
-    onClick
+    onClick,
+    borderRadius = 8
   } = props;
 
   return (
@@ -58,6 +62,7 @@ const Button = (props: ButtonProps) => {
       color={color}
       selected={selected}
       onClick={onClick}
+      borderRadius={borderRadius}
     >
       <ButtonTypography fontSize={fontSize}>{children}</ButtonTypography>
     </ButtonContainer>

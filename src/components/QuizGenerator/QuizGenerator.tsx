@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Typography } from "..";
 import { maxWidth, QuizCounts, QuizCountsType } from "../../common";
 import Button from "../Button";
 import ButtonGroup from "../ButtonGroup";
@@ -32,6 +33,7 @@ const QuizGeneratorButtonConatiner = styled("div", {
     width: "90%",
     display: "flex",
     justifyContent: "flex-end",
+    alignItems: "center",
     gap: "1em",
     margin: "0 auto"
   };
@@ -50,6 +52,7 @@ const QuizGenerator = (props: QuizGeneratorProps) => {
     <QuizGeneratorContainer>
       <QuizGeneratorContents>
         <QuizGeneratorButtonConatiner>
+          <Typography fontWeight={600}>문제 개수 선택</Typography>
           <QuizGeneratorButtonGroup>
             {QuizCounts.map(count => (
               <Button
