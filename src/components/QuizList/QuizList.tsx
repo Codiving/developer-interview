@@ -23,7 +23,7 @@ const QuizContents = styled("div", {
 })(() => {
   return {
     maxWidth: maxWidth,
-    width: "100%",
+    width: "90%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

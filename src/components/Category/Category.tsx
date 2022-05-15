@@ -14,7 +14,7 @@ interface CategoryProps {
 const CategoryContainer = styled("section", {
   label: "CategoryContainer"
 })(() => {
-  return { position: "relative", padding: "2em" };
+  return { position: "relative" };
 });
 
 const CategoryContents = styled("div", {
@@ -22,19 +22,25 @@ const CategoryContents = styled("div", {
 })(() => {
   return {
     maxWidth: maxWidth,
+    width: "90%",
     margin: "0 auto"
   };
 });
 
-const CategoryText = styled(Typography, {
-  label: "CategoryText"
+const CategoryMainText = styled(Typography, {
+  label: "CategoryMainText"
 })(() => {
   return {
-    marginBottom: 30,
     textAlign: "center",
     fontSize: 30,
     fontWeight: 700
   };
+});
+
+const CategoryDescription = styled(Typography, {
+  label: "CategoryDescription"
+})(() => {
+  return { marginTop: 5, marginBottom: 40, textAlign: "right", fontSize: 16 };
 });
 
 const ChipCategoryContainer = styled("div", {
@@ -93,7 +99,10 @@ const Category = (props: CategoryProps) => {
   return (
     <CategoryContainer>
       <CategoryContents>
-        <CategoryText component="h3">Quiz Categories</CategoryText>
+        <CategoryMainText component="h3">Quiz Categories</CategoryMainText>
+        <CategoryDescription component="p">
+          Quiz를 풀고 싶은 카테고리를 선택해주세요. (중복 가능)
+        </CategoryDescription>
         <ChipCategoryContainer>
           {categories.map(
             ({ startIcon, endIcon, text, color, selected }, index) => {

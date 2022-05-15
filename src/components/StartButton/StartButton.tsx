@@ -6,7 +6,7 @@ const StartButtonContainer = styled("div", {
 })(() => {
   return {
     textAlign: "center",
-    margin: "2em 0"
+    margin: "100px 0"
   };
 });
 
@@ -19,6 +19,7 @@ const SButton = styled(Button, {
     color: "white",
     transitionDuration: "0.3s",
     transitionProperty: "transform",
+    padding: "1em 2.5em",
     "&:hover": {
       backgroundColor: "#2098D1",
       transform: "translateY(-5px)"
@@ -49,7 +50,9 @@ const StartButton = () => {
   return (
     <StartButtonContainer>
       <SButton borderRadius={0}>
-        <Typography fontSize={18}>시작하기</Typography>
+        <Typography component="p" fontSize={32}>
+          시작하기
+        </Typography>
       </SButton>
     </StartButtonContainer>
   );

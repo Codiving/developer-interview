@@ -21,7 +21,7 @@ const QuizGeneratorContents = styled("div", {
 })(() => {
   return {
     maxWidth: maxWidth,
-    width: "100%",
+    width: "90%",
     margin: "0 auto"
   };
 });
@@ -30,7 +30,6 @@ const QuizGeneratorButtonConatiner = styled("div", {
   label: "QuizGeneratorButtonConatiner"
 })(() => {
   return {
-    width: "90%",
     display: "flex",
     justifyContent: "flex-end",
     alignItems: "center",

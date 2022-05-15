@@ -22,7 +22,7 @@ const QuizContainer = styled("div", {
     display: "flex",
     flexDirection: "column",
     gap: "1em",
-    width: "90%",
+    width: "100%",
     padding: "1.2em",
     borderRadius: 8,
     backgroundColor: "#fafafa",
