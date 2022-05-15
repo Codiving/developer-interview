@@ -126,7 +126,7 @@ table {
   position: relative;
   min-height: 100vh;
   display: grid;
-  grid-template-rows: 64px 1fr 30px;
+  grid-template-rows: 100px 1fr 30px;
 }
 
 * {
