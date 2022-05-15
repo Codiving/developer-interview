@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 interface Props {
-  component?: "span" | "p";
+  component?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span" | "p";
   children: React.ReactNode;
   fontWeight?: number;
   fontSize?: number;
