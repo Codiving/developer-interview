@@ -7,6 +7,7 @@ interface Props {
   fontSize?: number;
   className?: string;
   lineHeight?: string;
+  onClick?: () => void;
 }
 
 const TypographyContainer = styled("span", {
@@ -28,11 +29,13 @@ const Typography = (props: Props) => {
     fontWeight = 400,
     fontSize = 16,
     lineHeight = "inherit",
-    className
+    className,
+    onClick
   } = props;
 
   return (
     <TypographyContainer
+      onClick={onClick}
       as={component}
       fontWeight={fontWeight}
       fontSize={fontSize}
