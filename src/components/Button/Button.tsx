@@ -6,7 +6,6 @@ interface ButtonProps {
   children: React.ReactNode;
   className?: string;
   color?: string;
-  fontSize?: number;
   selected?: boolean;
   onClick?: () => void;
   borderRadius?: number;
@@ -36,20 +35,11 @@ const ButtonContainer = styled("button", {
   }
 );
 
-const ButtonTypography = styled(Typography, {
-  label: "ButtonTypography"
-})<{ fontSize: number }>(({ fontSize }) => {
-  return {
-    fontSize: Boolean(fontSize) ? fontSize : 12
-  };
-});
-
 const Button = (props: ButtonProps) => {
   const {
     children,
     className,
     color = "#2196f3",
-    fontSize = 0,
     selected = false,
     onClick,
     borderRadius = 8
@@ -64,7 +54,7 @@ const Button = (props: ButtonProps) => {
       onClick={onClick}
       borderRadius={borderRadius}
     >
-      <ButtonTypography fontSize={fontSize}>{children}</ButtonTypography>
+      {children}
     </ButtonContainer>
   );
 };
