@@ -6,15 +6,18 @@ import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { data } from "../public/data";
 import {
+  Data,
   getCategoryDataCount,
   IconStyle,
   QuizCounts,
   QuizCountsType
 } from "../src/common";
 import {
+  Button,
   Category,
   MainDescription,
   QuizGenerator,
+  StartButton,
   Typography
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
@@ -60,7 +63,7 @@ const HomeContainer = styled("div", {
 });
 
 const Home: NextPage = () => {
-  const [contents, setContents] = useState(data.slice(0, 5));
+  const [contents, setContents] = useState<Data[]>(data.slice(0, 5));
   const [categories, setCategories] = useState<ICategory[]>(Categories);
   const [answers, setAnswers] = useState<number[]>([]);
   const [isSubmit, setIsSubmit] = useState(false);
@@ -119,6 +122,7 @@ const Home: NextPage = () => {
   return (
     <HomeContainer>
       <MainDescription />
+      <StartButton />
       <Category
         categories={categories}
         onHandleCategories={onHandleCategories}
