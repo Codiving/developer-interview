@@ -16,7 +16,6 @@ const CategoryContainer = styled("section", {
 })(() => {
   return { position: "relative" };
 });
-
 const CategoryContents = styled("div", {
   label: "CategoryContents"
 })(() => {
@@ -41,8 +40,7 @@ const CategoryDescription = styled(Typography, {
   label: "CategoryDescription"
 })(() => {
   return {
-    marginTop: 5,
-    marginBottom: 40,
+    margin: "20px 0 50px 0",
     textAlign: "right",
     fontSize: 16,
     color: "#747474"

@@ -1,5 +1,20 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button, Typography } from "..";
+
+const bounce = keyframes`
+  from, 20%, 53%, 80%, to {
+    transform: translate3d(0 ,0 ,0);
+  }
+  
+  70% {
+    transform: translate3d(0, 15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0 ,4px ,0);
+  }
+`;
 
 const StartButtonContainer = styled("div", {
   label: "StartButtonContainer"
@@ -20,9 +35,11 @@ const SButton = styled(Button, {
     transitionDuration: "0.3s",
     transitionProperty: "transform",
     padding: "1em 2.5em",
+    animation: `${bounce} 1s infinite`,
     "&:hover": {
       backgroundColor: "#2098D1",
-      transform: "translateY(-5px)"
+      transform: "translateY(-5px)",
+      animation: "unset"
     },
     "&:before": {
       content: '""',

@@ -1,3 +1,4 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
@@ -56,10 +57,30 @@ export const Categories: ICategory[] = [
   }
 ];
 
+const bottomToUp = keyframes`
+  from {
+    transform: translate3d(0 ,1000px ,0);
+
+  }
+
+  to {
+    transform: translate3d(0 ,0px ,0);
+
+  }
+`;
+
 const HomeContainer = styled("div", {
   label: "HomeContainer"
 })(() => {
   return {};
+});
+
+const AnimationContainer = styled("div", {
+  label: "AnimationContainer"
+})(() => {
+  return {
+    animation: `${bottomToUp} 0.5s`
+  };
 });
 
 const Home: NextPage = () => {
@@ -123,15 +144,17 @@ const Home: NextPage = () => {
     <HomeContainer>
       <MainDescription />
       <StartButton />
-      <Category
-        categories={categories}
-        onHandleCategories={onHandleCategories}
-      />
-      <QuizGenerator
-        quizCount={quizCount}
-        onHandleQuizCount={onHandleQuizCount}
-        onQuizGenerator={onQuizGenerator}
-      />
+      <AnimationContainer>
+        <Category
+          categories={categories}
+          onHandleCategories={onHandleCategories}
+        />
+        <QuizGenerator
+          quizCount={quizCount}
+          onHandleQuizCount={onHandleQuizCount}
+          onQuizGenerator={onQuizGenerator}
+        />
+      </AnimationContainer>
       <QuizList
         contents={contents}
         isSubmit={isSubmit}
