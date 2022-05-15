@@ -17,8 +17,7 @@ const TypographyContainer = styled("span", {
     return {
       fontWeight: fontWeight,
       fontSize: fontSize,
-      lineHeight: lineHeight,
-      fontFamily: "ONE-Mobile-POP"
+      lineHeight: lineHeight
     };
   }
 );
