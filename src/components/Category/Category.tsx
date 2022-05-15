@@ -40,7 +40,13 @@ const CategoryMainText = styled(Typography, {
 const CategoryDescription = styled(Typography, {
   label: "CategoryDescription"
 })(() => {
-  return { marginTop: 5, marginBottom: 40, textAlign: "right", fontSize: 16 };
+  return {
+    marginTop: 5,
+    marginBottom: 40,
+    textAlign: "right",
+    fontSize: 16,
+    color: "#747474"
+  };
 });
 
 const ChipCategoryContainer = styled("div", {
