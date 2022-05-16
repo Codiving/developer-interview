@@ -77,11 +77,18 @@ const HomeContainer = styled("div", {
 
 const AnimationContainer = styled("div", {
   label: "AnimationContainer"
-})(() => {
+})<{ $display: boolean }>(({ $display }) => {
   return {
-    animation: `${bottomToUp} 0.5s`
+    display: $display ? "block" : "none",
+    animation: `${bottomToUp} 0.5s`,
+    padding: "5em 0"
   };
 });
+
+const initDisplay = {
+  quizGenerator: false,
+  quizList: false
+};
 
 const Home: NextPage = () => {
   const [contents, setContents] = useState<Data[]>(data.slice(0, 5));
@@ -89,6 +96,8 @@ const Home: NextPage = () => {
   const [answers, setAnswers] = useState<number[]>([]);
   const [isSubmit, setIsSubmit] = useState(false);
   const [quizCount, setQuizCount] = useState<QuizCountsType>(QuizCounts[0]);
+
+  const [display, setDisplay] = useState(initDisplay);
 
   const onHandleCategories = useCallback((newCategories: ICategory[]) => {
     setCategories(newCategories);
@@ -134,7 +143,17 @@ const Home: NextPage = () => {
     }, []);
     console.log("selectedCategories", selectedCategories);
     console.log("quizCount", quizCount);
+
+    setDisplay(prev => ({
+      ...prev,
+      quizList: true
+    }));
   };
+
+  const onStart = useCallback(
+    () => setDisplay(prev => ({ ...prev, quizGenerator: true })),
+    []
+  );
 
   useEffect(() => {
     setAnswers(new Array(contents.length).fill(-1));
@@ -143,8 +162,8 @@ const Home: NextPage = () => {
   return (
     <HomeContainer>
       <MainDescription />
-      <StartButton />
-      <AnimationContainer>
+      {!display.quizGenerator && <StartButton onClick={onStart} />}
+      <AnimationContainer $display={display.quizGenerator}>
         <Category
           categories={categories}
           onHandleCategories={onHandleCategories}
@@ -156,6 +175,7 @@ const Home: NextPage = () => {
         />
       </AnimationContainer>
       <QuizList
+        display={display.quizList}
         contents={contents}
         isSubmit={isSubmit}
         answers={answers}

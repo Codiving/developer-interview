@@ -1,20 +1,33 @@
+import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Data, maxWidth } from "../../common";
 import { Quiz } from "./components";
 
 interface QuizListProps {
+  display: boolean;
   contents: Data[];
   isSubmit: boolean;
   answers: number[];
   onChangeAnswer: (index: number, answer: number) => void;
 }
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+`;
+
 const QuizListContainer = styled("section", {
   label: "QuizListContainer"
-})(() => {
+})<{ $display: boolean }>(({ $display }) => {
   return {
-    display: "flex",
-    justifyContent: "center"
+    display: $display ? "flex" : "none",
+    justifyContent: "center",
+    animation: `${fadeIn} 0.5s`
   };
 });
 
@@ -33,10 +46,10 @@ const QuizContents = styled("div", {
 });
 
 const QuizList = (props: QuizListProps) => {
-  const { contents, isSubmit, answers, onChangeAnswer } = props;
+  const { display, contents, isSubmit, answers, onChangeAnswer } = props;
 
   return (
-    <QuizListContainer>
+    <QuizListContainer $display={display}>
       <QuizContents>
         {contents.map((item, index) => {
           const { type, question, candidates, answer, keywords, messages } =

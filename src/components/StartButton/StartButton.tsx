@@ -2,6 +2,10 @@ import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Button, Typography } from "..";
 
+interface StartButtonProps {
+  onClick: () => void;
+}
+
 const bounce = keyframes`
   from, 20%, 53%, 80%, to {
     transform: translate3d(0 ,0 ,0);
@@ -63,9 +67,11 @@ const SButton = styled(Button, {
   };
 });
 
-const StartButton = () => {
+const StartButton = (props: StartButtonProps) => {
+  const { onClick } = props;
+
   return (
-    <StartButtonContainer>
+    <StartButtonContainer onClick={onClick}>
       <SButton borderRadius={0}>
         <Typography component="p" fontSize={32}>
           시작하기
