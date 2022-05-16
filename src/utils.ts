@@ -36,4 +36,28 @@ const hexToRgbWithA = (hex: string, a: number) => {
   throw new Error("Bad Hex");
 };
 
-export { hexToRgbA, hexToRgbWithA };
+const getRealQuizCount = (
+  arr: { text: string; count: number }[],
+  _count: number,
+  index: number = 0
+): { text: string; count: number }[] => {
+  const newArr = [...arr];
+  let count = _count / (arr.length - index);
+
+  if (!Number.isInteger(count)) {
+    count = Math.floor(count);
+  }
+
+  const realCount = arr[index].count < count ? arr[index].count : count;
+  const newCount = _count - realCount;
+  newArr[index].count = realCount;
+
+  index += 1;
+
+  if (arr.length > index) {
+    return getRealQuizCount(newArr, newCount, index);
+  }
+  return newArr;
+};
+
+export { hexToRgbA, hexToRgbWithA, getRealQuizCount };
