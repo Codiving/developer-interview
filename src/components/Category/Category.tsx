@@ -5,6 +5,7 @@ import { maxWidth } from "../../common";
 import { hexToRgbWithA } from "../../utils";
 import Chip from "../Chip";
 import Typography from "../Typography";
+import { GrPowerReset } from "react-icons/gr";
 
 interface CategoryProps {
   categories: ICategory[];
@@ -61,7 +62,7 @@ const ChipCategoryContainer = styled("div", {
 
 const ChipCategory = styled(Chip, {
   label: "ChipCategory"
-})<{ selected: boolean; color: string }>(({ selected, color: _color }) => {
+})<{ selected?: boolean; color: string }>(({ selected, color: _color }) => {
   const color = hexToRgbWithA(_color, 0.3);
   const backgroundColor = hexToRgbWithA(_color, 0.5);
   return {
@@ -100,6 +101,16 @@ const Category = (props: CategoryProps) => {
     [categories, onHandleCategories]
   );
 
+  const onReset = useCallback(() => {
+    const newCategories = categories.map(item => {
+      return {
+        ...item,
+        selected: false
+      };
+    });
+    onHandleCategories(newCategories);
+  }, [categories, onHandleCategories]);
+
   return (
     <CategoryContainer>
       <CategoryContents>
@@ -126,6 +137,16 @@ const Category = (props: CategoryProps) => {
               );
             }
           )}
+          <ChipCategory
+            key={"reset"}
+            onClick={onReset}
+            startIcon={<GrPowerReset />}
+            color="#313030"
+          >
+            <ChipTypography lineHeight={"initial"} color={"#313030"}>
+              {"Reset"}
+            </ChipTypography>
+          </ChipCategory>
         </ChipCategoryContainer>
       </CategoryContents>
     </CategoryContainer>
