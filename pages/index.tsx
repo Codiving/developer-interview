@@ -1,5 +1,6 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import produce from "immer";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 import { DiJavascript } from "react-icons/di";
@@ -15,7 +16,6 @@ import {
   QuizCountsType
 } from "../src/common";
 import {
-  Button,
   Category,
   MainDescription,
   QuizGenerator,
@@ -23,6 +23,8 @@ import {
   Typography
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
+import { getRealQuizCount } from "../src/utils";
+
 export interface ICategory {
   text: string;
   color: string;
@@ -144,11 +146,19 @@ const Home: NextPage = () => {
         count: number;
       }[]
     >((acc, cur) => {
-      if (cur.selected) return [...acc, { text: cur.text, count: cur.count }];
+      if (cur.selected)
+        return [...acc, { text: cur.text, count: cur.count ? cur.count : 0 }];
       return acc;
     }, []);
-    console.log("selectedCategories", selectedCategories);
-    console.log("quizCount", quizCount);
+
+    const sortedCategories = selectedCategories.sort(
+      (a, b) => a.count - b.count
+    );
+
+    const realQuizCount = produce(sortedCategories, draftState => {
+      getRealQuizCount(draftState, quizCount);
+    });
+    console.log("# realQuizCount", realQuizCount);
 
     setDisplay(prev => ({
       ...prev,
