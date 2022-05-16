@@ -60,12 +60,10 @@ export const Categories: ICategory[] = [
 const bottomToUp = keyframes`
   from {
     transform: translate3d(0 ,1000px ,0);
-
   }
 
   to {
     transform: translate3d(0 ,0px ,0);
-
   }
 `;
 
@@ -150,10 +148,9 @@ const Home: NextPage = () => {
     }));
   };
 
-  const onStart = useCallback(
-    () => setDisplay(prev => ({ ...prev, quizGenerator: true })),
-    []
-  );
+  const onStart = useCallback(() => {
+    setDisplay(prev => ({ ...prev, quizGenerator: true }));
+  }, []);
 
   useEffect(() => {
     setAnswers(new Array(contents.length).fill(-1));
@@ -162,7 +159,9 @@ const Home: NextPage = () => {
   return (
     <HomeContainer>
       <MainDescription />
-      {!display.quizGenerator && <StartButton onClick={onStart} />}
+      {!display.quizGenerator && (
+        <StartButton onClick={onStart} display={display.quizGenerator} />
+      )}
       <AnimationContainer $display={display.quizGenerator}>
         <Category
           categories={categories}

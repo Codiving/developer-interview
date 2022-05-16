@@ -13,7 +13,9 @@ interface QuizGeneratorProps {
 const QuizGeneratorContainer = styled("section", {
   label: "QuizGeneratorContainer"
 })(() => {
-  return {};
+  return {
+    marginTop: "3em"
+  };
 });
 
 const QuizGeneratorContents = styled("div", {
@@ -44,6 +46,19 @@ const QuizGeneratorButtonGroup = styled(ButtonGroup, {
   return {};
 });
 
+const QuizGeneratorDescription = styled("div", {
+  label: "QuizGeneratorDescription"
+})(() => {
+  return {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    marginTop: "2em",
+    gap: "0.7em",
+    color: "#747474"
+  };
+});
+
 const QuizGenerator = (props: QuizGeneratorProps) => {
   const { quizCount, onHandleQuizCount, onQuizGenerator } = props;
 
@@ -69,6 +84,10 @@ const QuizGenerator = (props: QuizGeneratorProps) => {
             문제 생성
           </Button>
         </QuizGeneratorButtonConatiner>
+        <QuizGeneratorDescription>
+          <Typography>문제 개수는 카테고리 별 n 등분됩니다.</Typography>
+          <Typography>부족한 경우 다른 카테고리 개수로 채워집니다.</Typography>
+        </QuizGeneratorDescription>
       </QuizGeneratorContents>
     </QuizGeneratorContainer>
   );

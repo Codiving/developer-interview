@@ -1,9 +1,11 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import { Button, Typography } from "..";
 
 interface StartButtonProps {
   onClick: () => void;
+  display: boolean;
 }
 
 const bounce = keyframes`
@@ -20,12 +22,19 @@ const bounce = keyframes`
   }
 `;
 
+const fadeOut = keyframes`
+  from { opacity : 1 }
+
+  to {  opacity : 0 }
+`;
+
 const StartButtonContainer = styled("div", {
   label: "StartButtonContainer"
-})(() => {
+})<{ $display: boolean }>(({ $display }) => {
   return {
     textAlign: "center",
-    margin: "100px 0"
+    margin: "100px 0",
+    animation: $display ? `${fadeOut} 0.5s` : ""
   };
 });
 
@@ -68,10 +77,10 @@ const SButton = styled(Button, {
 });
 
 const StartButton = (props: StartButtonProps) => {
-  const { onClick } = props;
+  const { onClick, display: _display } = props;
 
   return (
-    <StartButtonContainer onClick={onClick}>
+    <StartButtonContainer $display={_display} onClick={onClick}>
       <SButton borderRadius={0}>
         <Typography component="p" fontSize={32}>
           시작하기
