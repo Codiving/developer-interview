@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
+import { SiTypescript } from "react-icons/si";
 import { data } from "../public/data";
 import {
   Data,
@@ -31,7 +32,7 @@ export interface ICategory {
   count: number;
 }
 
-const { Web, JavaScript, React } = getCategoryDataCount();
+const { Web, JavaScript, React, TypeScript } = getCategoryDataCount();
 
 export const Categories: ICategory[] = [
   {
@@ -47,6 +48,13 @@ export const Categories: ICategory[] = [
     color: "#ff9800",
     selected: false,
     count: JavaScript
+  },
+  {
+    text: "TypeScript",
+    startIcon: <SiTypescript style={{ ...IconStyle, color: "#2f74c0" }} />,
+    color: "#2f74c0",
+    selected: false,
+    count: TypeScript
   },
   {
     text: "React",

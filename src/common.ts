@@ -53,6 +53,7 @@ export const getCategoryDataCount = (): {
   Web: number;
   JavaScript: number;
   React: number;
+  TypeScript: number;
 } => {
   const type = data.map(el => el.type);
 
