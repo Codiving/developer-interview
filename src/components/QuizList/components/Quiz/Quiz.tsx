@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
-import { prefix } from "../../../../common";
+import { colors, DataType, prefix } from "../../../../common";
 import Typography from "../../../Typography";
 
 interface QuizProps {
-  type: string;
+  type: DataType;
   question: string[];
   candidates: string[];
   answer: string;
@@ -34,15 +34,29 @@ const QuestionContainer = styled("div", {
   label: "QuestionContainer"
 })(() => {
   return {
-    display: "flex"
+    display: "flex",
+    alignItems: "center"
   };
 });
 
-const Question = styled(Typography)(() => {
+const Question = styled(Typography, { label: "Question" })(() => {
   return {
     marginRight: 20
   };
 });
+
+const QuestionText = styled(Typography, { label: "QuestionText" })(() => {
+  return {};
+});
+
+const QuizType = styled(Typography, { label: "QuizType" })<{ type: DataType }>(
+  ({ type }) => {
+    return {
+      marginLeft: 15,
+      color: colors[type]
+    };
+  }
+);
 
 const AnswerContainer = styled("div", {
   label: "AnswerContainer"
@@ -100,7 +114,8 @@ const Quiz = (props: QuizProps) => {
         <Question fontWeight={600} fontSize={24}>
           Quiz:{" "}
         </Question>
-        <Typography fontSize={20}>{question}</Typography>
+        <QuestionText fontSize={20}>{question}</QuestionText>
+        <QuizType type={type}>({type})</QuizType>
       </QuestionContainer>
       <AnswerContainer>
         {candidates.map((candidate, index) => (

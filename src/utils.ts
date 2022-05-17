@@ -75,4 +75,4 @@ const quizShuffle = (quizData: Data[]): Data[] => {
   return quizData.map(item => ({ ...item })).sort(shuffle);
 };
 
-export { hexToRgbA, hexToRgbWithA, getRealQuizCount, getQuiz };
+export { hexToRgbA, hexToRgbWithA, getRealQuizCount, getQuiz, shuffle };

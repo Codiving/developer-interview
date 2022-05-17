@@ -71,3 +71,10 @@ export const getCategoryDataCount = (): {
 
   return result;
 };
+
+export const colors = {
+  Web: "#4b4bcd",
+  JavaScript: "#ff9800",
+  TypeScript: "#2f74c0",
+  React: "#03a9f4"
+};

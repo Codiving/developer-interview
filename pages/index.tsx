@@ -8,6 +8,7 @@ import { GoBrowser } from "react-icons/go";
 import { SiTypescript } from "react-icons/si";
 import { data } from "../public/data";
 import {
+  colors,
   Data,
   DataType,
   getCategoryDataCount,
@@ -23,7 +24,7 @@ import {
   Typography
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
-import { getQuiz, getRealQuizCount } from "../src/utils";
+import { getQuiz, getRealQuizCount, shuffle } from "../src/utils";
 
 export interface ICategory {
   text: string;
@@ -39,29 +40,33 @@ const { Web, JavaScript, React, TypeScript } = getCategoryDataCount();
 export const Categories: ICategory[] = [
   {
     text: "Web",
-    startIcon: <GoBrowser style={{ ...IconStyle, color: "#4b4bcd" }} />,
-    color: "#4b4bcd",
+    startIcon: <GoBrowser style={{ ...IconStyle, color: colors["Web"] }} />,
+    color: colors["Web"],
     selected: false,
     count: Web
   },
   {
     text: "JavaScript",
-    startIcon: <DiJavascript style={{ ...IconStyle, color: "#ff9800" }} />,
-    color: "#ff9800",
+    startIcon: (
+      <DiJavascript style={{ ...IconStyle, color: colors["JavaScript"] }} />
+    ),
+    color: colors["JavaScript"],
     selected: false,
     count: JavaScript
   },
   {
     text: "TypeScript",
-    startIcon: <SiTypescript style={{ ...IconStyle, color: "#2f74c0" }} />,
-    color: "#2f74c0",
+    startIcon: (
+      <SiTypescript style={{ ...IconStyle, color: colors["TypeScript"] }} />
+    ),
+    color: colors["TypeScript"],
     selected: false,
     count: TypeScript
   },
   {
     text: "React",
-    startIcon: <FaReact style={{ ...IconStyle, color: "#03a9f4" }} />,
-    color: "#03a9f4",
+    startIcon: <FaReact style={{ ...IconStyle, color: colors["React"] }} />,
+    color: colors["React"],
     selected: false,
     count: React
   }
@@ -163,10 +168,12 @@ const Home: NextPage = () => {
     const realQuizCount = getRealQuizCount(sortedCategories, quizCount);
     console.log("realQuizCount", realQuizCount);
 
-    const newContents = realQuizCount.reduce<Data[]>((acc, cur) => {
-      const quizs = getQuiz(cur.text as DataType, cur.count);
-      return [...acc, ...quizs];
-    }, []);
+    const newContents = realQuizCount
+      .reduce<Data[]>((acc, cur) => {
+        const quizs = getQuiz(cur.text as DataType, cur.count);
+        return [...acc, ...quizs];
+      }, [])
+      .sort(shuffle);
 
     setContents(newContents);
 
