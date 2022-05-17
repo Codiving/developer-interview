@@ -41,7 +41,8 @@ const getRealQuizCount = (
   _count: number,
   index: number = 0
 ): { text: string; count: number }[] => {
-  const newArr = [...arr];
+  const newArr = arr.map(item => ({ ...item }));
+  console.log("arr", arr);
   let count = _count / (arr.length - index);
 
   if (!Number.isInteger(count)) {

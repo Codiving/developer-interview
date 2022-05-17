@@ -1,6 +1,5 @@
 import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-import produce from "immer";
 import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 import { DiJavascript } from "react-icons/di";
@@ -155,10 +154,7 @@ const Home: NextPage = () => {
       (a, b) => a.count - b.count
     );
 
-    const realQuizCount = produce(sortedCategories, draftState => {
-      getRealQuizCount(draftState, quizCount);
-    });
-    console.log("# realQuizCount", realQuizCount);
+    const realQuizCount = getRealQuizCount(sortedCategories, quizCount);
 
     setDisplay(prev => ({
       ...prev,
