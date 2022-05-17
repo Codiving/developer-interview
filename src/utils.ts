@@ -1,3 +1,6 @@
+import { DATA } from "../public/data";
+import { Data, dataType, DataType } from "./common";
+
 const hexToRgbA = (hex: string) => {
   let c;
   if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
@@ -61,4 +64,15 @@ const getRealQuizCount = (
   return newArr;
 };
 
-export { hexToRgbA, hexToRgbWithA, getRealQuizCount };
+const getQuiz = (category: DataType, count: number): Data[] => {
+  const index = dataType.findIndex(type => type === category);
+  return quizShuffle(DATA[index]).slice(0, count);
+};
+
+const shuffle = () => Math.random() - 0.5;
+
+const quizShuffle = (quizData: Data[]): Data[] => {
+  return quizData.map(item => ({ ...item })).sort(shuffle);
+};
+
+export { hexToRgbA, hexToRgbWithA, getRealQuizCount, getQuiz };

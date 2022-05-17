@@ -36,8 +36,8 @@ export const IconStyle = {
   height: 24
 };
 
-const dataType = ["Web", "JavaScript", "TypeScript", "React"] as const;
-type DataType = typeof dataType[number];
+export const dataType = ["Web", "JavaScript", "TypeScript", "React"] as const;
+export type DataType = typeof dataType[number];
 
 export interface Data {
   type: DataType;

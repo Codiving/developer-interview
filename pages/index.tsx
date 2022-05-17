@@ -9,6 +9,7 @@ import { SiTypescript } from "react-icons/si";
 import { data } from "../public/data";
 import {
   Data,
+  DataType,
   getCategoryDataCount,
   IconStyle,
   QuizCounts,
@@ -22,7 +23,7 @@ import {
   Typography
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
-import { getRealQuizCount } from "../src/utils";
+import { getQuiz, getRealQuizCount } from "../src/utils";
 
 export interface ICategory {
   text: string;
@@ -154,7 +155,20 @@ const Home: NextPage = () => {
       (a, b) => a.count - b.count
     );
 
+    if (!sortedCategories.length) {
+      alert("카테고리를 선택해주세요.");
+      return;
+    }
+
     const realQuizCount = getRealQuizCount(sortedCategories, quizCount);
+    console.log("realQuizCount", realQuizCount);
+
+    const newContents = realQuizCount.reduce<Data[]>((acc, cur) => {
+      const quizs = getQuiz(cur.text as DataType, cur.count);
+      return [...acc, ...quizs];
+    }, []);
+
+    setContents(newContents);
 
     setDisplay(prev => ({
       ...prev,
