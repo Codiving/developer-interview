@@ -112,7 +112,7 @@ const Quiz = (props: QuizProps) => {
     <QuizContainer>
       <QuestionContainer>
         <Question fontWeight={600} fontSize={24}>
-          Quiz:{" "}
+          Quiz {upperIndex + 1}.{" "}
         </Question>
         <QuestionText fontSize={20}>{question}</QuestionText>
         <QuizType type={type}>({type})</QuizType>
