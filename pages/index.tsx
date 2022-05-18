@@ -212,13 +212,14 @@ const Home: NextPage = () => {
           onQuizGenerator={onQuizGenerator}
         />
       </AnimationContainer>
-      <QuizList
-        display={display.quizList}
-        contents={contents}
-        isSubmit={isSubmit}
-        answers={answers}
-        onChangeAnswer={onChangeAnswer}
-      />
+      {display.quizList && (
+        <QuizList
+          contents={contents}
+          isSubmit={isSubmit}
+          answers={answers}
+          onChangeAnswer={onChangeAnswer}
+        />
+      )}
 
       <div>
         <button onClick={onSubmit}>Submit</button>

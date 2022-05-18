@@ -4,7 +4,6 @@ import { Data, maxWidth } from "../../common";
 import { Quiz } from "./components";
 
 interface QuizListProps {
-  display: boolean;
   contents: Data[];
   isSubmit: boolean;
   answers: string[];
@@ -23,9 +22,9 @@ const fadeIn = keyframes`
 
 const QuizListContainer = styled("section", {
   label: "QuizListContainer"
-})<{ $display: boolean }>(({ $display }) => {
+})(() => {
   return {
-    display: $display ? "flex" : "none",
+    display: "flex",
     justifyContent: "center",
     animation: `${fadeIn} 0.5s`
   };
@@ -46,10 +45,10 @@ const QuizContents = styled("div", {
 });
 
 const QuizList = (props: QuizListProps) => {
-  const { display, contents, isSubmit, answers, onChangeAnswer } = props;
+  const { contents, isSubmit, answers, onChangeAnswer } = props;
 
   return (
-    <QuizListContainer $display={display}>
+    <QuizListContainer>
       <QuizContents>
         {contents.map((item, index) => {
           const { type, question, candidates, answer, keywords, messages } =
