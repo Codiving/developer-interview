@@ -183,6 +183,8 @@ const Home: NextPage = () => {
       ...prev,
       quizList: true
     }));
+
+    setIsSubmit(false);
   };
 
   const onStart = useCallback(() => {

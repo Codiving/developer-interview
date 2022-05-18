@@ -11,6 +11,15 @@ interface AnswerProps {
   upperIndex: number;
 }
 
+const getResultCss = (correct: boolean, answer: boolean) => {
+  if (!correct && answer) {
+    return {
+      backgroundColor: "red"
+    };
+  }
+  return {};
+};
+
 const AnswerContainer = styled("div", {
   label: "AnswerContainer"
 })(() => {
@@ -24,7 +33,7 @@ const AnswerContainer = styled("div", {
 const AnswerList = styled("div", {
   label: "AnswerList"
 })<{ selected: boolean; correct: boolean; isSubmit: boolean; answer: boolean }>(
-  ({ selected: _selected, correct: _correct, isSubmit, answer: _answer }) => {
+  ({ selected: _selected, correct, isSubmit, answer }) => {
     const selected = _selected
       ? {
           padding: "4px 9px",
@@ -33,7 +42,7 @@ const AnswerList = styled("div", {
         }
       : {};
 
-    const answer = _answer ? { backgroundColor: "red" } : {};
+    const resultCss = isSubmit ? getResultCss(correct, answer) : {};
 
     return {
       padding: "5px 10px",
@@ -41,7 +50,8 @@ const AnswerList = styled("div", {
       borderRadius: 8,
       backgroundColor: "white",
       cursor: "pointer",
-      ...selected
+      ...selected,
+      ...resultCss
     };
   }
 );
@@ -74,9 +84,9 @@ const Answer = (props: AnswerProps) => {
             selected={candidate === userAnswer}
             correct={answer === userAnswer}
             isSubmit={isSubmit}
-            answer={answer === answer}
+            answer={candidate === answer}
           >
-            <AnswerCandidate>{prefix[index]}.</AnswerCandidate>{" "}
+            <AnswerCandidate>{prefix[index]}.</AnswerCandidate>
             <AnswerCandidate>{candidate}</AnswerCandidate>
           </AnswerList>
         );
