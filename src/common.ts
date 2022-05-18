@@ -49,7 +49,7 @@ export interface Data {
   link: string[];
 }
 
-export const QuizCounts = [20, 25, 30, 35, 40] as const;
+export const QuizCounts = [3, 20, 25, 30, 35, 40] as const;
 export type QuizCountsType = typeof QuizCounts[number];
 
 export const getCategoryDataCount = (): {

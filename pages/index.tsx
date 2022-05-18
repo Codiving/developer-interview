@@ -106,7 +106,7 @@ const initDisplay = {
 const Home: NextPage = () => {
   const [contents, setContents] = useState<Data[]>(data.slice(0, 5));
   const [categories, setCategories] = useState<ICategory[]>(Categories);
-  const [answers, setAnswers] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
   const [isSubmit, setIsSubmit] = useState(false);
   const [quizCount, setQuizCount] = useState<QuizCountsType>(QuizCounts[0]);
 
@@ -117,7 +117,7 @@ const Home: NextPage = () => {
   }, []);
 
   const onChangeAnswer = useCallback(
-    (index: number, _answer: number) => {
+    (index: number, _answer: string) => {
       const newAnswer = answers.map((item, idx) => {
         if (index === idx) return _answer;
         return item;
@@ -129,13 +129,15 @@ const Home: NextPage = () => {
 
   const onSubmit = () => {
     const isNoneSelected = answers.reduce<number[]>((acc, cur, index) => {
-      if (cur === -1) return [...acc, index];
+      if (cur === "") return [...acc, index];
       return acc;
     }, []);
 
     if (isNoneSelected.length) {
       return;
     }
+    console.log("contents", contents);
+    console.log("answers", answers);
     setIsSubmit(true);
   };
 
@@ -166,7 +168,7 @@ const Home: NextPage = () => {
     }
 
     const realQuizCount = getRealQuizCount(sortedCategories, quizCount);
-    console.log("realQuizCount", realQuizCount);
+    // console.log("realQuizCount", realQuizCount);
 
     const newContents = realQuizCount
       .reduce<Data[]>((acc, cur) => {
@@ -188,7 +190,7 @@ const Home: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    setAnswers(new Array(contents.length).fill(-1));
+    setAnswers(new Array(contents.length).fill(""));
   }, [contents]);
 
   return (

@@ -7,8 +7,8 @@ interface QuizListProps {
   display: boolean;
   contents: Data[];
   isSubmit: boolean;
-  answers: number[];
-  onChangeAnswer: (index: number, answer: number) => void;
+  answers: string[];
+  onChangeAnswer: (index: number, answer: string) => void;
 }
 
 const fadeIn = keyframes`

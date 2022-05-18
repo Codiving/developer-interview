@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import { colors, DataType, prefix } from "../../../../common";
-import Typography from "../../../Typography";
+import { DataType } from "../../../../common";
+import { Description, Question } from "./components";
+import Answer from "./components/Answer";
 
 interface QuizProps {
   type: DataType;
@@ -10,8 +11,8 @@ interface QuizProps {
   keywords: string[];
   messages: string[];
   index: number;
-  userAnswer: number;
-  onChangeAnswer: (index: number, answer: number) => void;
+  userAnswer: string;
+  onChangeAnswer: (index: number, answer: string) => void;
   isSubmit: boolean;
 }
 
@@ -27,70 +28,6 @@ const QuizContainer = styled("div", {
     borderRadius: 8,
     backgroundColor: "#fafafa",
     border: "1px solid #dad2d2"
-  };
-});
-
-const QuestionContainer = styled("div", {
-  label: "QuestionContainer"
-})(() => {
-  return {
-    display: "flex",
-    alignItems: "center"
-  };
-});
-
-const Question = styled(Typography, { label: "Question" })(() => {
-  return {
-    marginRight: 20
-  };
-});
-
-const QuestionText = styled(Typography, { label: "QuestionText" })(() => {
-  return {};
-});
-
-const QuizType = styled(Typography, { label: "QuizType" })<{ type: DataType }>(
-  ({ type }) => {
-    return {
-      marginLeft: 15,
-      color: colors[type]
-    };
-  }
-);
-
-const AnswerContainer = styled("div", {
-  label: "AnswerContainer"
-})(() => {
-  return {
-    display: "flex",
-    flexDirection: "column",
-    gap: "0.5em"
-  };
-});
-
-const AnswerList = styled("div", {
-  label: "AnswerList"
-})<{ selected: boolean }>(({ selected: _selected }) => {
-  const selected = _selected
-    ? {
-        outline: "2px solid",
-        backgroundColor: "#b0b0f0",
-        border: 0
-      }
-    : {};
-  return {
-    padding: "5px 10px",
-    border: "1px solid #dcd4d4",
-    borderRadius: 8,
-    backgroundColor: "white",
-    cursor: "pointer",
-    ...selected
-  };
-});
-
-const Answer = styled(Typography)(() => {
-  return {
-    fontSize: 20
   };
 });
 
@@ -110,26 +47,16 @@ const Quiz = (props: QuizProps) => {
 
   return (
     <QuizContainer>
-      <QuestionContainer>
-        <Question fontWeight={600} fontSize={24}>
-          Quiz {upperIndex + 1}.{" "}
-        </Question>
-        <QuestionText fontSize={20}>{question}</QuestionText>
-        <QuizType type={type}>({type})</QuizType>
-      </QuestionContainer>
-      <AnswerContainer>
-        {candidates.map((candidate, index) => (
-          <AnswerList
-            key={candidate}
-            onClick={() => {
-              onChangeAnswer(upperIndex, index);
-            }}
-            selected={index === userAnswer}
-          >
-            <Answer>{prefix[index]}.</Answer> <Answer>{candidate}</Answer>
-          </AnswerList>
-        ))}
-      </AnswerContainer>
+      <Question upperIndex={upperIndex} question={question} type={type} />
+      <Answer
+        onChangeAnswer={onChangeAnswer}
+        candidates={candidates}
+        answer={answer}
+        upperIndex={upperIndex}
+        userAnswer={userAnswer}
+        isSubmit={isSubmit}
+      />
+      {isSubmit && <Description keywords={keywords} messages={messages} />}
     </QuizContainer>
   );
 };
