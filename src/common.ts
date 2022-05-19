@@ -41,7 +41,7 @@ export type DataType = typeof dataType[number];
 
 export interface Data {
   type: DataType;
-  question: string[];
+  question: string;
   candidates: string[];
   answer: string;
   keywords: string[];

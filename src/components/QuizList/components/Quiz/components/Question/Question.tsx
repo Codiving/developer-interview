@@ -5,7 +5,7 @@ import { colors, DataType } from "../../../../../../common";
 
 interface QuestionProps {
   type: DataType;
-  question: string[];
+  question: string;
   upperIndex: number;
   correct: boolean;
   isSubmit: boolean;

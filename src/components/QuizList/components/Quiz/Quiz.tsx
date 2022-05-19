@@ -5,7 +5,7 @@ import Answer from "./components/Answer";
 
 interface QuizProps {
   type: DataType;
-  question: string[];
+  question: string;
   candidates: string[];
   answer: string;
   keywords: string[];
