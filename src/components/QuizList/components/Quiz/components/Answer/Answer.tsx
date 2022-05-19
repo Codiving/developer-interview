@@ -9,6 +9,7 @@ interface AnswerProps {
   onChangeAnswer: (index: number, answer: string) => void;
   isSubmit: boolean;
   upperIndex: number;
+  correct: boolean;
 }
 
 const getResultCss = (correct: boolean, answer: boolean) => {
@@ -69,7 +70,8 @@ const Answer = (props: AnswerProps) => {
     answer,
     upperIndex,
     userAnswer,
-    isSubmit
+    isSubmit,
+    correct
   } = props;
 
   return (
@@ -82,7 +84,7 @@ const Answer = (props: AnswerProps) => {
               onChangeAnswer(upperIndex, candidate);
             }}
             selected={candidate === userAnswer}
-            correct={answer === userAnswer}
+            correct={correct}
             isSubmit={isSubmit}
             answer={candidate === answer}
           >

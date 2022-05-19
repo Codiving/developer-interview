@@ -2,6 +2,14 @@ import styled from "@emotion/styled";
 import { Typography } from "../../../../..";
 import { colors, DataType } from "../../../../../../common";
 
+interface QuestionProps {
+  type: DataType;
+  question: string[];
+  upperIndex: number;
+  correct: boolean;
+  isSubmit: boolean;
+}
+
 const QuestionContainer = styled("div", {
   label: "QuestionContainer"
 })(() => {
@@ -30,14 +38,19 @@ const QuizType = styled(Typography, { label: "QuizType" })<{ type: DataType }>(
   }
 );
 
-interface QuestionProps {
-  type: DataType;
-  question: string[];
-  upperIndex: number;
-}
+const ResultAnswer = styled(Typography, {
+  label: "ResultAnswer"
+})<{ correct: boolean }>(({ correct }) => {
+  return {
+    marginLeft: 15,
+    fontSize: 24,
+    fontStyle: "italic",
+    color: correct ? "#44a544" : "#ff0000"
+  };
+});
 
 const Question = (props: QuestionProps) => {
-  const { upperIndex, question, type } = props;
+  const { upperIndex, question, type, correct, isSubmit } = props;
 
   return (
     <QuestionContainer>
@@ -46,6 +59,11 @@ const Question = (props: QuestionProps) => {
       </QuestionNumber>
       <QuestionText fontSize={20}>{question}</QuestionText>
       <QuizType type={type}>({type})</QuizType>
+      {isSubmit && (
+        <ResultAnswer correct={correct}>
+          {correct ? "Good" : "Bad"}
+        </ResultAnswer>
+      )}
     </QuestionContainer>
   );
 };

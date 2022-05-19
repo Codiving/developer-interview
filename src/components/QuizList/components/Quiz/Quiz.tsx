@@ -45,9 +45,17 @@ const Quiz = (props: QuizProps) => {
     isSubmit
   } = props;
 
+  const correct = answer === userAnswer;
+
   return (
     <QuizContainer>
-      <Question upperIndex={upperIndex} question={question} type={type} />
+      <Question
+        upperIndex={upperIndex}
+        question={question}
+        type={type}
+        correct={correct}
+        isSubmit={isSubmit}
+      />
       <Answer
         onChangeAnswer={onChangeAnswer}
         candidates={candidates}
@@ -55,6 +63,7 @@ const Quiz = (props: QuizProps) => {
         upperIndex={upperIndex}
         userAnswer={userAnswer}
         isSubmit={isSubmit}
+        correct={correct}
       />
       {isSubmit && <Description keywords={keywords} messages={messages} />}
     </QuizContainer>
