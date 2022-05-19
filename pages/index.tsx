@@ -106,9 +106,12 @@ const initDisplay = {
 };
 
 const Home: NextPage = () => {
-  const [contents, setContents] = useState<Data[]>(data.slice(0, 5));
+  const [contents, setContents] = useState<Data[]>([]);
+  const [bookmarked, setBookmarked] = useState<string[]>([]);
   const [categories, setCategories] = useState<ICategory[]>(Categories);
-  const [answers, setAnswers] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<string[]>(
+    new Array(contents.length).fill("")
+  );
   const [isSubmit, setIsSubmit] = useState(false);
   const [quizCount, setQuizCount] = useState<QuizCountsType>(QuizCounts[0]);
 
@@ -180,6 +183,7 @@ const Home: NextPage = () => {
       .sort(shuffle);
 
     setContents(newContents);
+    setAnswers(new Array(contents.length).fill(""));
 
     setDisplay(prev => ({
       ...prev,
@@ -193,9 +197,15 @@ const Home: NextPage = () => {
     setDisplay(prev => ({ ...prev, quizGenerator: true }));
   }, []);
 
+  const onChangeBookmarked = useCallback((newBookmarked: string[]) => {
+    setBookmarked(newBookmarked);
+  }, []);
+
   useEffect(() => {
-    setAnswers(new Array(contents.length).fill(""));
-  }, [contents]);
+    const question = localStorage.getItem("question") ?? "";
+    const newBookmarked = Boolean(question) ? JSON.parse(question) : [];
+    setBookmarked(newBookmarked);
+  }, []);
 
   return (
     <HomeContainer>
@@ -220,6 +230,8 @@ const Home: NextPage = () => {
           isSubmit={isSubmit}
           answers={answers}
           onChangeAnswer={onChangeAnswer}
+          bookmarked={bookmarked}
+          onChangeBookmarked={onChangeBookmarked}
         />
       )}
 

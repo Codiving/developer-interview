@@ -8,6 +8,8 @@ interface QuizListProps {
   isSubmit: boolean;
   answers: string[];
   onChangeAnswer: (index: number, answer: string) => void;
+  bookmarked: string[];
+  onChangeBookmarked: (bookmarked: string[]) => void;
 }
 
 const fadeIn = keyframes`
@@ -45,7 +47,14 @@ const QuizContents = styled("div", {
 });
 
 const QuizList = (props: QuizListProps) => {
-  const { contents, isSubmit, answers, onChangeAnswer } = props;
+  const {
+    contents,
+    isSubmit,
+    answers,
+    onChangeAnswer,
+    bookmarked,
+    onChangeBookmarked
+  } = props;
 
   return (
     <QuizListContainer>
@@ -67,6 +76,8 @@ const QuizList = (props: QuizListProps) => {
               userAnswer={answers[index]}
               onChangeAnswer={onChangeAnswer}
               isSubmit={isSubmit}
+              bookmarked={bookmarked}
+              onChangeBookmarked={onChangeBookmarked}
             />
           );
         })}

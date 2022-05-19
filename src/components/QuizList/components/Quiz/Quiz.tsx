@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { DataType } from "../../../../common";
+import { Data, DataType } from "../../../../common";
 import { Description, Question } from "./components";
 import Answer from "./components/Answer";
 
@@ -14,6 +14,8 @@ interface QuizProps {
   userAnswer: string;
   onChangeAnswer: (index: number, answer: string) => void;
   isSubmit: boolean;
+  bookmarked: string[];
+  onChangeBookmarked: (bookmarked: string[]) => void;
 }
 
 const QuizContainer = styled("div", {
@@ -42,7 +44,9 @@ const Quiz = (props: QuizProps) => {
     userAnswer,
     index: upperIndex,
     onChangeAnswer,
-    isSubmit
+    isSubmit,
+    bookmarked,
+    onChangeBookmarked
   } = props;
 
   const correct = answer === userAnswer;
@@ -55,6 +59,8 @@ const Quiz = (props: QuizProps) => {
         type={type}
         correct={correct}
         isSubmit={isSubmit}
+        bookmarked={bookmarked}
+        onChangeBookmarked={onChangeBookmarked}
       />
       <Answer
         onChangeAnswer={onChangeAnswer}

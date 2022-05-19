@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { BsFillBookmarkHeartFill, BsFillBookmarkXFill } from "react-icons/bs";
 import { Typography } from "../../../../..";
-import { colors, DataType } from "../../../../../../common";
+import { colors, Data, DataType } from "../../../../../../common";
 
 interface QuestionProps {
   type: DataType;
@@ -9,6 +9,8 @@ interface QuestionProps {
   upperIndex: number;
   correct: boolean;
   isSubmit: boolean;
+  bookmarked: string[];
+  onChangeBookmarked: (bookmarked: string[]) => void;
 }
 
 const QuestionContainer = styled("div", {
@@ -50,45 +52,58 @@ const ResultAnswer = styled(Typography, {
   };
 });
 
-const BookmarkIcon = styled(BsFillBookmarkHeartFill, {
-  label: "BookmarkIcon"
-})(() => {
-  return {
-    margin: "0 0 0 auto",
-    width: 22,
-    height: 22,
-    color: "gray",
-    cursor: "pointer"
-  };
-});
+interface BookmarkIconProps {
+  bookmarked: boolean;
+  onClick: () => void;
+}
 
-const BookmarkedIcon = styled(BsFillBookmarkXFill, {
-  label: "BookmarkedIcon"
-})(() => {
-  return {
-    margin: "0 0 0 auto",
-    width: 22,
-    height: 22,
-    color: "gray",
-    cursor: "pointer"
-  };
-});
+const BookmarkIcon = (props: BookmarkIconProps) => {
+  const { bookmarked, onClick } = props;
+
+  return (
+    <div
+      style={{
+        margin: "0 0 0 auto"
+      }}
+      onClick={onClick}
+    >
+      <BsFillBookmarkHeartFill
+        style={{
+          width: 22,
+          height: 22,
+          cursor: "pointer",
+          color: bookmarked ? "red" : "gray"
+        }}
+      />
+    </div>
+  );
+};
 
 const Question = (props: QuestionProps) => {
-  const { upperIndex, question, type, correct, isSubmit } = props;
+  const {
+    upperIndex,
+    question,
+    type,
+    correct,
+    isSubmit,
+    bookmarked,
+    onChangeBookmarked
+  } = props;
 
-  const localStorage = window.localStorage.getItem("question") || "[]";
+  const isBookmarked = Boolean(
+    bookmarked.find(bookmark => bookmark === question)
+  );
 
   const onAddBookmark = () => {
-    console.log("localStorage", localStorage);
-    // const json = JSON.parse(localStorage);
-    // console.log("localStorage", json,localStorage, question);
+    const newBookmarked = [...bookmarked, question];
+    onChangeBookmarked(newBookmarked);
+    window.localStorage.setItem("question", JSON.stringify(newBookmarked));
   };
 
   const onRemoveBookmark = () => {
-    console.log("localStorage", localStorage);
-    // const json = JSON.parse(localStorage);
-    // console.log("localStorage", localStorage, question);
+    const newBookmarked = bookmarked.filter(bookmark => bookmark !== question);
+    onChangeBookmarked(newBookmarked);
+    window.localStorage.setItem("question", JSON.stringify(newBookmarked));
   };
 
   return (
@@ -103,8 +118,10 @@ const Question = (props: QuestionProps) => {
           {correct ? "Good" : "Bad"}
         </ResultAnswer>
       )}
-      {/* <BookmarkIcon /> */}
-      <BookmarkedIcon onClick={onRemoveBookmark} />
+      <BookmarkIcon
+        bookmarked={isBookmarked}
+        onClick={() => (isBookmarked ? onRemoveBookmark() : onAddBookmark())}
+      />
     </QuestionContainer>
   );
 };
