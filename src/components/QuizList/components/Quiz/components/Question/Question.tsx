@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { BsFillBookmarkHeartFill, BsFillBookmarkXFill } from "react-icons/bs";
 import { Typography } from "../../../../..";
 import { colors, DataType } from "../../../../../../common";
 
@@ -49,13 +50,41 @@ const ResultAnswer = styled(Typography, {
   };
 });
 
+const BookmarkIcon = styled(BsFillBookmarkXFill, {
+  label: "BookmarkIcon"
+})(() => {
+  return {
+    margin: "0 0 0 auto",
+    width: 22,
+    height: 22,
+    color: "gray",
+    cursor: "pointer"
+  };
+});
+
+const BookmarkedIcon = styled(BsFillBookmarkHeartFill, {
+  label: "BookmarkedIcon"
+})(() => {
+  return {
+    margin: "0 0 0 auto",
+    width: 22,
+    height: 22,
+    color: "gray",
+    cursor: "pointer"
+  };
+});
+
 const Question = (props: QuestionProps) => {
   const { upperIndex, question, type, correct, isSubmit } = props;
+
+  const onAddBookmark = () => {};
+
+  const onRemoveBookmark = () => {};
 
   return (
     <QuestionContainer>
       <QuestionNumber fontWeight={600} fontSize={24}>
-        Quiz {upperIndex + 1}.{" "}
+        Quiz {upperIndex + 1}.
       </QuestionNumber>
       <QuestionText fontSize={20}>{question}</QuestionText>
       <QuizType type={type}>({type})</QuizType>
@@ -64,6 +93,8 @@ const Question = (props: QuestionProps) => {
           {correct ? "Good" : "Bad"}
         </ResultAnswer>
       )}
+      {/* <BookmarkIcon /> */}
+      <BookmarkedIcon />
     </QuestionContainer>
   );
 };
