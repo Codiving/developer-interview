@@ -50,7 +50,7 @@ const ResultAnswer = styled(Typography, {
   };
 });
 
-const BookmarkIcon = styled(BsFillBookmarkXFill, {
+const BookmarkIcon = styled(BsFillBookmarkHeartFill, {
   label: "BookmarkIcon"
 })(() => {
   return {
@@ -62,7 +62,7 @@ const BookmarkIcon = styled(BsFillBookmarkXFill, {
   };
 });
 
-const BookmarkedIcon = styled(BsFillBookmarkHeartFill, {
+const BookmarkedIcon = styled(BsFillBookmarkXFill, {
   label: "BookmarkedIcon"
 })(() => {
   return {
@@ -77,9 +77,19 @@ const BookmarkedIcon = styled(BsFillBookmarkHeartFill, {
 const Question = (props: QuestionProps) => {
   const { upperIndex, question, type, correct, isSubmit } = props;
 
-  const onAddBookmark = () => {};
+  const localStorage = window.localStorage.getItem("question") || "[]";
 
-  const onRemoveBookmark = () => {};
+  const onAddBookmark = () => {
+    console.log("localStorage", localStorage);
+    // const json = JSON.parse(localStorage);
+    // console.log("localStorage", json,localStorage, question);
+  };
+
+  const onRemoveBookmark = () => {
+    console.log("localStorage", localStorage);
+    // const json = JSON.parse(localStorage);
+    // console.log("localStorage", localStorage, question);
+  };
 
   return (
     <QuestionContainer>
@@ -94,7 +104,7 @@ const Question = (props: QuestionProps) => {
         </ResultAnswer>
       )}
       {/* <BookmarkIcon /> */}
-      <BookmarkedIcon />
+      <BookmarkedIcon onClick={onRemoveBookmark} />
     </QuestionContainer>
   );
 };
