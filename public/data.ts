@@ -111,7 +111,8 @@ const Web: Data[] = [
 const JavaScript: Data[] = [
   {
     type: "JavaScript",
-    question: "Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
+    question:
+      "111 Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["브라우저 렌더링", "Reflow", "Repaint"],
@@ -120,7 +121,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "display:none; 은 렌더 트리에 포함되지 않는다.",
+    question: "111 display:none; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["렌더 트리", "Render Tree"],
@@ -129,7 +130,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
+    question: "111 visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["렌더 트리", "Render Tree"],
@@ -138,7 +139,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "쿠키는 서버에서 관리하는 정보이다.",
+    question: "111 쿠키는 서버에서 관리하는 정보이다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["쿠키", "세션"],
@@ -147,7 +148,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "세션으로 로그인 유지 기능을 구현할 수 있다.",
+    question: "111 세션으로 로그인 유지 기능을 구현할 수 있다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["쿠키", "세션"],
@@ -156,7 +157,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "jwt를 사용하면 세션보다 서버에 부담이 덜하다.",
+    question: "111 jwt를 사용하면 세션보다 서버에 부담이 덜하다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["쿠키", "세션", "jwt"],
@@ -165,7 +166,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "jwt를 사용하면 강제 로그아웃 기능을 구현할 수 있다.",
+    question: "111 jwt를 사용하면 강제 로그아웃 기능을 구현할 수 있다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["쿠키", "세션", "jwt"],
@@ -174,7 +175,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "쿠키보다 세션이 보안에 더 좋다.",
+    question: "111 쿠키보다 세션이 보안에 더 좋다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["쿠키", "세션"],
@@ -186,7 +187,7 @@ const JavaScript: Data[] = [
   },
   {
     type: "JavaScript",
-    question: "CORS는 서버에서 띄우는 에러이다.",
+    question: "111 CORS는 서버에서 띄우는 에러이다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["CORS"],
@@ -198,7 +199,8 @@ const JavaScript: Data[] = [
 const TypeScript: Data[] = [
   {
     type: "TypeScript",
-    question: "Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
+    question:
+      "222 Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["브라우저 렌더링", "Reflow", "Repaint"],
@@ -207,7 +209,7 @@ const TypeScript: Data[] = [
   },
   {
     type: "TypeScript",
-    question: "display:none; 은 렌더 트리에 포함되지 않는다.",
+    question: "222 display:none; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["렌더 트리", "Render Tree"],
@@ -216,7 +218,7 @@ const TypeScript: Data[] = [
   },
   {
     type: "TypeScript",
-    question: "visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
+    question: "222 visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["렌더 트리", "Render Tree"],
@@ -225,7 +227,7 @@ const TypeScript: Data[] = [
   },
   {
     type: "TypeScript",
-    question: "쿠키는 서버에서 관리하는 정보이다.",
+    question: "222 쿠키는 서버에서 관리하는 정보이다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["쿠키", "세션"],
@@ -234,7 +236,7 @@ const TypeScript: Data[] = [
   },
   {
     type: "TypeScript",
-    question: "세션으로 로그인 유지 기능을 구현할 수 있다.",
+    question: "222 세션으로 로그인 유지 기능을 구현할 수 있다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["쿠키", "세션"],
@@ -246,7 +248,8 @@ const TypeScript: Data[] = [
 const React: Data[] = [
   {
     type: "React",
-    question: "Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
+    question:
+      "333 Browser 렌더링 과정에서 reflow는 repaint 다음으로 이루어진다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["브라우저 렌더링", "Reflow", "Repaint"],
@@ -255,7 +258,7 @@ const React: Data[] = [
   },
   {
     type: "React",
-    question: "display:none; 은 렌더 트리에 포함되지 않는다.",
+    question: "333 display:none; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["렌더 트리", "Render Tree"],
@@ -264,7 +267,7 @@ const React: Data[] = [
   },
   {
     type: "React",
-    question: "visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
+    question: "333 visibility:hidden; 은 렌더 트리에 포함되지 않는다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["렌더 트리", "Render Tree"],
@@ -273,7 +276,7 @@ const React: Data[] = [
   },
   {
     type: "React",
-    question: "쿠키는 서버에서 관리하는 정보이다.",
+    question: "333 쿠키는 서버에서 관리하는 정보이다.",
     candidates: ["O", "X"],
     answer: "X",
     keywords: ["쿠키", "세션"],
@@ -282,7 +285,7 @@ const React: Data[] = [
   },
   {
     type: "React",
-    question: "세션으로 로그인 유지 기능을 구현할 수 있다.",
+    question: "333 세션으로 로그인 유지 기능을 구현할 수 있다.",
     candidates: ["O", "X"],
     answer: "O",
     keywords: ["쿠키", "세션"],
