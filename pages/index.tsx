@@ -20,10 +20,10 @@ import {
   Category,
   MainDescription,
   QuizGenerator,
-  StartButton,
-  Typography
+  StartButton
 } from "../src/components";
 import QuizList from "../src/components/QuizList";
+import SubmitButton from "../src/components/SubmitButton";
 import { getQuiz, getRealQuizCount, shuffle } from "../src/utils";
 
 export interface ICategory {
@@ -85,7 +85,9 @@ const bottomToUp = keyframes`
 const HomeContainer = styled("div", {
   label: "HomeContainer"
 })(() => {
-  return {};
+  return {
+    paddingBottom: 40
+  };
 });
 
 const AnimationContainer = styled("div", {
@@ -221,12 +223,10 @@ const Home: NextPage = () => {
         />
       )}
 
-      <div>
-        <button onClick={onSubmit}>Submit</button>
-      </div>
-      <Typography>
+      {display.quizList && !isSubmit && <SubmitButton onSubmit={onSubmit} />}
+      {/* <Typography>
         틀린 내용을 확인하시거나 건의사항이 있으시면 아래 email로 연락 바랍니다.
-      </Typography>
+      </Typography> */}
     </HomeContainer>
   );
 };
