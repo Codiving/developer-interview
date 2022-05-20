@@ -6,7 +6,6 @@ import { DiJavascript } from "react-icons/di";
 import { FaReact } from "react-icons/fa";
 import { GoBrowser } from "react-icons/go";
 import { SiTypescript } from "react-icons/si";
-import { data } from "../public/data";
 import {
   colors,
   Data,
@@ -174,16 +173,21 @@ const Home: NextPage = () => {
     }
 
     const realQuizCount = getRealQuizCount(sortedCategories, quizCount);
-    // console.log("realQuizCount", realQuizCount);
 
     const newContents = realQuizCount
       .reduce<Data[]>((acc, cur) => {
-        const quizs = getQuiz(cur.text as DataType, cur.count);
+        const quizs = getQuiz(
+          cur.text as DataType,
+          cur.count,
+          checked,
+          bookmarked
+        );
         return [...acc, ...quizs];
       }, [])
       .sort(shuffle);
 
     setContents(newContents);
+
     setAnswers(new Array(newContents.length).fill(""));
 
     setDisplay(prev => ({

@@ -64,9 +64,21 @@ const getRealQuizCount = (
   return newArr;
 };
 
-const getQuiz = (category: DataType, count: number): Data[] => {
+const getQuiz = (
+  category: DataType,
+  count: number,
+  checked: boolean,
+  bookmarked: string[]
+): Data[] => {
   const index = dataType.findIndex(type => type === category);
-  return quizShuffle(DATA[index]).slice(0, count);
+  if (checked) {
+    const datas = DATA[index].filter(({ question }) =>
+      bookmarked.includes(question)
+    );
+    return quizShuffle(datas).slice(0, count);
+  } else {
+    return quizShuffle(DATA[index]).slice(0, count);
+  }
 };
 
 const shuffle = () => Math.random() - 0.5;
