@@ -8,6 +8,8 @@ interface QuizGeneratorProps {
   quizCount: QuizCountsType;
   onHandleQuizCount: (item: QuizCountsType) => void;
   onQuizGenerator: () => void;
+  checked: boolean;
+  onHandleChecked: () => void;
 }
 
 const QuizGeneratorContainer = styled("section", {
@@ -26,6 +28,24 @@ const QuizGeneratorContents = styled("div", {
     width: "90%",
     margin: "0 auto"
   };
+});
+
+const QuizBookmarkCheckConatiner = styled("div", {
+  label: "QuizBookmarkCheckConatiner"
+})(() => {
+  return {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    marginBottom: "20px",
+    gap: 10
+  };
+});
+
+const BookmarkRadioButton = styled("input", {
+  label: "BookmarkRadioButton"
+})(() => {
+  return {};
 });
 
 const QuizGeneratorButtonConatiner = styled("div", {
@@ -60,11 +80,27 @@ const QuizGeneratorDescription = styled("div", {
 });
 
 const QuizGenerator = (props: QuizGeneratorProps) => {
-  const { quizCount, onHandleQuizCount, onQuizGenerator } = props;
+  const {
+    quizCount,
+    onHandleQuizCount,
+    onQuizGenerator,
+    checked,
+    onHandleChecked
+  } = props;
 
+  console.log("checked", checked);
   return (
     <QuizGeneratorContainer>
       <QuizGeneratorContents>
+        <QuizBookmarkCheckConatiner>
+          <BookmarkRadioButton
+            type="radio"
+            readOnly
+            checked={checked}
+            onClick={onHandleChecked}
+          />
+          <Typography>Bookmark 문제만 풀기</Typography>
+        </QuizBookmarkCheckConatiner>
         <QuizGeneratorButtonConatiner>
           <Typography fontWeight={600}>문제 개수 선택</Typography>
           <QuizGeneratorButtonGroup>

@@ -116,6 +116,7 @@ const Home: NextPage = () => {
   const [quizCount, setQuizCount] = useState<QuizCountsType>(QuizCounts[0]);
 
   const [display, setDisplay] = useState(initDisplay);
+  const [checked, setChecked] = useState(false);
 
   const onHandleCategories = useCallback((newCategories: ICategory[]) => {
     setCategories(newCategories);
@@ -201,6 +202,8 @@ const Home: NextPage = () => {
     setBookmarked(newBookmarked);
   }, []);
 
+  const onHandleChecked = useCallback(() => setChecked(prev => !prev), []);
+
   useEffect(() => {
     const question = localStorage.getItem("question") ?? "";
     const newBookmarked = Boolean(question) ? JSON.parse(question) : [];
@@ -222,6 +225,8 @@ const Home: NextPage = () => {
           quizCount={quizCount}
           onHandleQuizCount={onHandleQuizCount}
           onQuizGenerator={onQuizGenerator}
+          checked={checked}
+          onHandleChecked={onHandleChecked}
         />
       </AnimationContainer>
       {display.quizList && (
