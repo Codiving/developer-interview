@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { Typography } from "..";
 import { maxWidth, QuizCounts, QuizCountsType } from "../../common";
 import Button from "../Button";
 import ButtonGroup from "../ButtonGroup";
+import Typography from "../Typography";
 
 interface QuizGeneratorProps {
   quizCount: QuizCountsType;
@@ -42,10 +42,20 @@ const QuizBookmarkCheckConatiner = styled("div", {
   };
 });
 
+const OnlyBookmarkText = styled(Typography, {
+  label: "OnlyBookmarkText"
+})(() => {
+  return {
+    cursor: "pointer"
+  };
+});
+
 const BookmarkRadioButton = styled("input", {
   label: "BookmarkRadioButton"
 })(() => {
-  return {};
+  return {
+    cursor: "pointer"
+  };
 });
 
 const QuizGeneratorButtonConatiner = styled("div", {
@@ -88,7 +98,6 @@ const QuizGenerator = (props: QuizGeneratorProps) => {
     onHandleChecked
   } = props;
 
-  console.log("checked", checked);
   return (
     <QuizGeneratorContainer>
       <QuizGeneratorContents>
@@ -99,7 +108,9 @@ const QuizGenerator = (props: QuizGeneratorProps) => {
             checked={checked}
             onClick={onHandleChecked}
           />
-          <Typography>Bookmark 문제만 풀기</Typography>
+          <OnlyBookmarkText onClick={onHandleChecked}>
+            Bookmark 문제만 풀기
+          </OnlyBookmarkText>
         </QuizBookmarkCheckConatiner>
         <QuizGeneratorButtonConatiner>
           <Typography fontWeight={600}>문제 개수 선택</Typography>
