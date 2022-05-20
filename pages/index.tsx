@@ -183,7 +183,7 @@ const Home: NextPage = () => {
       .sort(shuffle);
 
     setContents(newContents);
-    setAnswers(new Array(contents.length).fill(""));
+    setAnswers(new Array(newContents.length).fill(""));
 
     setDisplay(prev => ({
       ...prev,
