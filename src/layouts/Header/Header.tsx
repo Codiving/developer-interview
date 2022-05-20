@@ -50,7 +50,7 @@ const Header = () => {
     <HeaderContainer>
       <HeaderContents>
         <HeaderMainText onClick={onGoMainPage} component="h1">
-          프론트엔드 Quiz
+          개발자 상식 Quiz
         </HeaderMainText>
       </HeaderContents>
     </HeaderContainer>

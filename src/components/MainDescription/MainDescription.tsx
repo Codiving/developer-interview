@@ -36,17 +36,18 @@ const MainDescription = () => {
     <MainDescriptionContainer>
       <MainDescriptionContents>
         <TypographyContainer>
+          <Typography> 내가 알고 있는 </Typography>
           <Typography fontWeight={600} fontSize={32}>
-            프론트엔드 개발자 면접 준비
+            개념
           </Typography>
-          <Typography> 를 하고 계신가요?</Typography>
+          <Typography> 이 맞는 지 궁금하신가요?</Typography>
         </TypographyContainer>
         <TypographyContainer>
           <Typography>간단한 </Typography>
           <Typography fontWeight={600} fontSize={32}>
-            객관식 면접
+            객관식 Quiz
           </Typography>
-          <Typography> 을 통해 나의 부족함을 확인해봅시다.</Typography>
+          <Typography> 을 통해 확인해봅시다.</Typography>
         </TypographyContainer>
         {/* <TypographyContainer>
           <Typography>문제를 풀고 </Typography>
