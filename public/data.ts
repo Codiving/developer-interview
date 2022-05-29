@@ -1,5 +1,4 @@
 import { Data } from "../src/common";
-
 const Web: Data[] = [
   {
     type: "Web",
